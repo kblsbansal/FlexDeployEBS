@@ -1,0 +1,1 @@
+create table xxmb.xx_flexdeploy (name varchar2(1));
