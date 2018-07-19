@@ -1,3 +1,4 @@
 CREATE OR REPLACE PACKAGE FlexDeploy_pkb_1 AS 
    PROCEDURE find_sal(c_id number); 
 END FlexDeploy_pkb_1;
+/
