@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oa:listOfValues version="10.1.3_1312" xml:lang="en-US" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:ui="http://xmlns.oracle.com/uix/ui" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$" amDefName="mbci.oracle.apps.xxmb.gl.importjournal.server.ImportJournalAM" scope="/">
+   <ui:contents>
+      <oa:table name="ValidAccount2RN" id="ValidAccount2Table">
+         <ui:contents>
+            <oa:messageStyledText id="ValidAccountTwo" dataType="VARCHAR2" prompt="ValidAccountTwo" viewName="ValidAccount2LovVO1" viewAttr="ValidAccountTwo" maximumLength="10"/>
+         </ui:contents>
+      </oa:table>
+   </ui:contents>
+</oa:listOfValues>

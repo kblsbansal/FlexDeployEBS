@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oa:listOfValues version="10.1.3_1312" xml:lang="en-US" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:ui="http://xmlns.oracle.com/uix/ui" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$" scope="/">
+   <ui:contents>
+      <oa:table name="LovContainerRN" id="LovContainerVO1">
+         <ui:contents>
+            <oa:messageStyledText id="RecordId" dataType="NUMBER" prompt="RecordId" viewName="LovContainerVO1" viewAttr="RecordId" rendered="false"/>
+            <oa:messageStyledText id="ContainerName" dataType="VARCHAR2" prompt="ContainerName" viewName="LovContainerVO1" viewAttr="ContainerName" maximumLength="40" queryable="true"/>
+            <oa:messageStyledText id="ContainerDesc" dataType="VARCHAR2" prompt="ContainerDesc" viewName="LovContainerVO1" viewAttr="ContainerDesc" maximumLength="240"/>
+            <oa:messageStyledText id="MaxWeight" dataType="NUMBER" prompt="MaxWeight" viewName="LovContainerVO1" viewAttr="MaxWeight"/>
+            <oa:messageStyledText id="UomWeight" dataType="VARCHAR2" prompt="UomWeight" viewName="LovContainerVO1" viewAttr="UomWeight" maximumLength="10"/>
+            <oa:messageStyledText id="MaxVolume" dataType="NUMBER" prompt="MaxVolume" viewName="LovContainerVO1" viewAttr="MaxVolume"/>
+            <oa:messageStyledText id="UomVolume" dataType="VARCHAR2" prompt="UomVolume" viewName="LovContainerVO1" viewAttr="UomVolume" maximumLength="10"/>
+            <oa:messageStyledText id="MaxLinear" dataType="NUMBER" prompt="MaxLinear" viewName="LovContainerVO1" viewAttr="MaxLinear"/>
+            <oa:messageStyledText id="UomLinear" dataType="VARCHAR2" prompt="UomLinear" viewName="LovContainerVO1" viewAttr="UomLinear" maximumLength="10"/>
+            <oa:messageStyledText id="MaxQty" dataType="NUMBER" prompt="MaxQty" viewName="LovContainerVO1" viewAttr="MaxQty"/>
+            <oa:messageStyledText id="UomQty" dataType="VARCHAR2" prompt="UomQty" viewName="LovContainerVO1" viewAttr="UomQty" maximumLength="10"/>
+            <oa:messageStyledText id="Attribue1" dataType="VARCHAR2" prompt="Attribue1" viewName="LovContainerVO1" viewAttr="Attribue1" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue2" dataType="VARCHAR2" prompt="Attribue2" viewName="LovContainerVO1" viewAttr="Attribue2" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue3" dataType="VARCHAR2" prompt="Attribue3" viewName="LovContainerVO1" viewAttr="Attribue3" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue4" dataType="VARCHAR2" prompt="Attribue4" viewName="LovContainerVO1" viewAttr="Attribue4" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue5" dataType="VARCHAR2" prompt="Attribue5" viewName="LovContainerVO1" viewAttr="Attribue5" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue6" dataType="VARCHAR2" prompt="Attribue6" viewName="LovContainerVO1" viewAttr="Attribue6" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue7" dataType="VARCHAR2" prompt="Attribue7" viewName="LovContainerVO1" viewAttr="Attribue7" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue8" dataType="VARCHAR2" prompt="Attribue8" viewName="LovContainerVO1" viewAttr="Attribue8" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue9" dataType="VARCHAR2" prompt="Attribue9" viewName="LovContainerVO1" viewAttr="Attribue9" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue10" dataType="VARCHAR2" prompt="Attribue10" viewName="LovContainerVO1" viewAttr="Attribue10" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue11" dataType="VARCHAR2" prompt="Attribue11" viewName="LovContainerVO1" viewAttr="Attribue11" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue12" dataType="VARCHAR2" prompt="Attribue12" viewName="LovContainerVO1" viewAttr="Attribue12" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue13" dataType="VARCHAR2" prompt="Attribue13" viewName="LovContainerVO1" viewAttr="Attribue13" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue14" dataType="VARCHAR2" prompt="Attribue14" viewName="LovContainerVO1" viewAttr="Attribue14" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="Attribue15" dataType="VARCHAR2" prompt="Attribue15" viewName="LovContainerVO1" viewAttr="Attribue15" maximumLength="150" rendered="false"/>
+            <oa:messageStyledText id="CreationDate" dataType="DATE" prompt="CreationDate" viewName="LovContainerVO1" viewAttr="CreationDate" rendered="false"/>
+            <oa:messageStyledText id="CreatedBy" dataType="NUMBER" prompt="CreatedBy" viewName="LovContainerVO1" viewAttr="CreatedBy" rendered="false"/>
+            <oa:messageStyledText id="LastUpdateDate" dataType="DATE" prompt="LastUpdateDate" viewName="LovContainerVO1" viewAttr="LastUpdateDate" rendered="false"/>
+            <oa:messageStyledText id="LastUpdatedBy" dataType="NUMBER" prompt="LastUpdatedBy" viewName="LovContainerVO1" viewAttr="LastUpdatedBy" rendered="false"/>
+            <oa:messageStyledText id="MaxArea" viewName="LovContainerVO1" viewAttr="MaxArea" dataType="NUMBER" prompt="MaxArea"/>
+            <oa:messageStyledText id="UomArea" viewName="LovContainerVO1" viewAttr="UomArea" prompt="UomArea"/>
+         </ui:contents>
+      </oa:table>
+   </ui:contents>
+</oa:listOfValues>

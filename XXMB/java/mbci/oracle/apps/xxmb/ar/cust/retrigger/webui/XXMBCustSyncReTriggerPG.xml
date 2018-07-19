@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="10.1.3_1312" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="PageLayoutRN" amDefName="mbci.oracle.apps.xxmb.ar.cust.retrigger.server.XXMBCustSyncReTriggerAM" scope="Current Package [/mbci/oracle/apps/xxmb/ar/cust/retriggeri]" windowTitle="Retrigger Form" title="Customer Sync Retrigger Form" controllerClass="mbci.oracle.apps.xxmb.ar.cust.retrigger.webui.XXMBCustSyncRetriggerCO">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:spacer id="spacer1" height="10"/>
+            <oa:header id="hdrRN1" text="Location Retrigger">
+               <ui:contents>
+                  <oa:messageComponentLayout id="MsgComponentRN">
+                     <ui:contents>
+                        <oa:messageLovInput id="Location" externalListOfValues="/mbci/oracle/apps/xxmb/ar/cust/retrigger/lov/webui/locationRN" lookAheadEnabled="true" queryable="true">
+                           <lovMappings>
+                              <lovMap id="lovMapLocation" lovItem="location" resultTo="Location" criteriaFrom="Location"/>
+                              <lovMap id="lovMapCustAcctSiteId" lovItem="custacctsiteid" resultTo="custacctsiteid1" criteriaFrom="custacctsiteid1"/>
+                           </lovMappings>
+                        </oa:messageLovInput>
+                        <oa:messageLayout id="msgLayout">
+                           <ui:contents>
+                              <oa:spacer id="spacer12" height="10"/>
+                              <oa:submitButton id="retrigger" text="Retrigger" prompt="Retrigger" disabled="false">
+                                 <ui:primaryClientAction>
+                                    <ui:firePartialAction event="retrigger" id="firePartialAction1"/>
+                                 </ui:primaryClientAction>
+                              </oa:submitButton>
+                              <oa:button id="clear1" text="Clear" prompt="Clear">
+                                 <ui:primaryClientAction>
+                                    <ui:fireAction event="clear1"/>
+                                 </ui:primaryClientAction>
+                              </oa:button>
+                              <oa:formValue id="custacctsiteid1" rendered="true" dataType="VARCHAR2"/>
+                           </ui:contents>
+                        </oa:messageLayout>
+                     </ui:contents>
+                  </oa:messageComponentLayout>
+               </ui:contents>
+            </oa:header>
+            <oa:spacer id="spacer11" height="10"/>
+            <oa:header id="hdrRN2" text="Account Retrigger">
+               <ui:contents>
+                  <oa:messageComponentLayout id="MsgComponentRN2">
+                     <ui:contents>
+                        <oa:messageLovInput id="Account" queryable="true" sortState="yes" lookAheadEnabled="true" externalListOfValues="/mbci/oracle/apps/xxmb/ar/cust/retrigger/lov/webui/accountRN">
+                           <lovMappings>
+                              <lovMap id="lovAcctMap" lovItem="AccountNumber" resultTo="Account" criteriaFrom="Account"/>
+                              <lovMap id="lovcustacctsiteidMap" lovItem="CustAcctSiteId" resultTo="custacctsiteid2" criteriaFrom="custacctsiteid2"/>
+                           </lovMappings>
+                        </oa:messageLovInput>
+                        <oa:messageLayout id="msgLayout2">
+                           <ui:contents>
+                              <oa:spacer id="spacer13" height="10"/>
+                              <oa:submitButton id="AcctReTrigger" text="Acct Retrigger" prompt="Acct RetriggerFlex" disabled="false">
+                                 <ui:primaryClientAction>
+                                    <ui:firePartialAction event="acctretrigger"/>
+                                 </ui:primaryClientAction>
+                              </oa:submitButton>
+                              <oa:formValue id="custacctsiteid2"/>
+                              <oa:button id="clear2" text="Clear" prompt="Clear">
+                                 <ui:primaryClientAction>
+                                    <ui:fireAction event="clear2" id="fireAction1"/>
+                                 </ui:primaryClientAction>
+                              </oa:button>
+                           </ui:contents>
+                        </oa:messageLayout>
+                     </ui:contents>
+                  </oa:messageComponentLayout>
+               </ui:contents>
+            </oa:header>
+         </ui:contents>
+      </oa:pageLayout>
+   </content>
+</page>

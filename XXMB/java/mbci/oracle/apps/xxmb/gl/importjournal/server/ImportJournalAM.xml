@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+
+<AppModule
+   Name="ImportJournalAM"
+   ComponentClass="mbci.oracle.apps.xxmb.gl.importjournal.server.ImportJournalAMImpl" >
+   <DesignTime>
+      <Attr Name="_isCodegen" Value="true" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+      <Attr Name="_deployType" Value="0" />
+   </DesignTime>
+   <ViewUsage
+      Name="XxmbPsToGlAcctMappingVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.importjournal.server.XxmbPsToGlAcctMappingVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="ValidCode1LovVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.importjournal.lov.server.ValidCode1LovVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="ValidAccount2LovVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.importjournal.lov.server.ValidAccount2LovVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="ValidAccount1LovVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.importjournal.lov.server.ValidAccount1LovVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="SearchTypeLovVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.importjournal.lov.server.SearchTypeLovVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="YesNoLovVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.importjournal.lov.server.YesNoLovVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="RecordTypeLovVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.importjournal.lov.server.RecordTypeLovVO" >
+   </ViewUsage>
+</AppModule>

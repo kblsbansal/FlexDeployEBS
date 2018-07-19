@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oa:listOfValues version="10.1.3_1312" xml:lang="en-US" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:ui="http://xmlns.oracle.com/uix/ui" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$" scope="/">
+   <ui:contents>
+      <oa:table name="vendorLovRN" id="vendorLovVO1" amDefName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.xxmbMassPOUpdAM">
+         <ui:contents>
+            <oa:messageStyledText id="VendorNumber" dataType="VARCHAR2" prompt="VendorNumber" viewName="vendorLovVO1" viewAttr="VendorNumber" maximumLength="30" queryable="true" selectiveSearchCriteria="true"/>
+            <oa:messageStyledText id="VendorName" dataType="VARCHAR2" prompt="VendorName" viewName="vendorLovVO1" viewAttr="VendorName" maximumLength="240" queryable="true" selectiveSearchCriteria="true"/>
+            <oa:formValue id="VendorId" dataType="NUMBER" prompt="VendorId" viewName="vendorLovVO1" viewAttr="VendorId"/>
+         </ui:contents>
+      </oa:table>
+   </ui:contents>
+</oa:listOfValues>

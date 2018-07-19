@@ -1,0 +1,828 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="10.1.3_1312" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="PageLayoutRN" amDefName="mbci.oracle.apps.xxmb.rice183.server.Rice183AM" windowTitle="Rice183" title="Planned Orders Containerization" controllerClass="mbci.oracle.apps.xxmb.rice183.webui.XXMBRice183CO">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:subTabLayout id="mainTabsRN">
+               <ui:contents>
+                  <oa:header id="containTabRN">
+                     <ui:contents>
+                        <oa:header id="DaysFromTodayRN" text="Days from Today Filter"/>
+                        <oa:messageComponentLayout id="DaysFilterRN" width="1368">
+                           <ui:contents>
+                              <oa:messageTextInput id="DaysFilter" prompt="Days From Today" viewName="ParmValuesVO1" viewAttr="DaysFrmToday">
+                                 <ui:primaryClientAction>
+                                    <ui:firePartialAction event="DaysFrmTodayChg" id="firePartialAction1"/>
+                                 </ui:primaryClientAction>
+                              </oa:messageTextInput>
+                              <oa:messageTextInput id="AddDaysFilter" viewName="ParmValuesVO1" viewAttr="AddDaysFrmToday" prompt="Additional Days">
+                                 <ui:primaryClientAction>
+                                    <ui:firePartialAction event="AddDaysChg"/>
+                                 </ui:primaryClientAction>
+                              </oa:messageTextInput>
+                           </ui:contents>
+                        </oa:messageComponentLayout>
+                        <oa:header id="OrderHdrRN" text="Search Orders"/>
+                        <oa:rowLayout id="SearchRN" hAlign="center" width="1368">
+                           <ui:contents>
+                              <oa:messageComponentLayout id="LovSearchRN">
+                                 <ui:contents>
+                                    <oa:messageLovInput id="OrgCodeLOV" externalListOfValues="/mbci/oracle/apps/xxmb/rice183/webui/LovOrgCodeRN" prompt="Organization" selectiveSearchCriteria="true">
+                                       <lovMappings>
+                                          <lovMap id="getOrgCode" lovItem="OrganizationCode" resultTo="OrgCodeLOV" criteriaFrom="OrgCodeLOV"/>
+                                          <lovMap id="getOrgID" lovItem="OrganizationId" resultTo="ParentOrgID"/>
+                                          <lovMap id="parmQueryID" lovItem="QueryID" criteriaFrom="ParentQryID" requiredForLOV="true"/>
+                                       </lovMappings>
+                                    </oa:messageLovInput>
+                                    <oa:messageLovInput id="SuplierLOV" externalListOfValues="/mbci/oracle/apps/xxmb/rice183/webui/LovSupplierRN" prompt="Supplier" columns="75" maximumLength="240">
+                                       <lovMappings>
+                                          <lovMap id="getSuppName" lovItem="SupplierName" resultTo="SuplierLOV" criteriaFrom="SuplierLOV" programmaticQuery="true" requiredForLOV="false"/>
+                                          <lovMap id="parmOrgID2" lovItem="OrganizationId" criteriaFrom="ParentOrgID" requiredForLOV="false"/>
+                                          <lovMap id="parmQueryID3" lovItem="QueryID" criteriaFrom="ParentQryID" requiredForLOV="true"/>
+                                          <lovMap id="getSupplierID" lovItem="SupplierId" resultTo="ParentSupplierID"/>
+                                       </lovMappings>
+                                    </oa:messageLovInput>
+                                    <oa:messageCheckBox id="InclSecondary" defaultValue="N" checkedValue="Y" unCheckedValue="N" text="Include Secondary" prompt="Include Secondary"/>
+                                    <oa:messageTextInput id="CalcQueryID" viewName="ParmValuesVO1" viewAttr="wkbQryID" prompt="Query ID" rendered="false"/>
+                                 </ui:contents>
+                              </oa:messageComponentLayout>
+                              <oa:shuttle id="PlanPgmRN" leadingHeader="Available">
+                                 <ui:leading>
+                                   ain <oa:list id="PlanPgmAvail" pickListViewName="LovPlanPgmVO1" pickListDispAttr="ProgramCode" pickListValAttr="ProgramCode"/>
+                                 </ui:leading>
+                                 <ui:trailing>
+                                    <oa:list id="PlanPgmSel"/>
+                                 </ui:trailing>
+                                 <ui:trailingFooter>
+                                    <oa:flowLayout id="ApplyRN">
+                                       <ui:contents>
+                                          <oa:button id="ApplyFilterButton" text="Search" prompt="Search">
+                                             <ui:primaryClientAction>
+                                                <ui:firePartialAction event="ApplyFilterButton" id="firePartialAction2"/>
+                                             </ui:primaryClientAction>
+                                          </oa:button>
+                                       </ui:contents>
+                                    </oa:flowLayout>
+                                 </ui:trailingFooter>
+                              </oa:shuttle>
+                           </ui:contents>
+                        </oa:rowLayout>
+                        <oa:header id="ContHdrRN" text="Container Selection"/>
+                        <oa:messageComponentLayout id="ContSelectRN" rows="2" columns="6" width="1368">
+                           <ui:contents>
+                              <oa:messageLovInput id="ContainerLOV" externalListOfValues="/mbci/oracle/apps/xxmb/rice183/webui/LovContainerRN" prompt="Container" unvalidated="false">
+                                 <lovMappings>
+                                    <lovMap id="getContainerName" lovItem="ContainerName" resultTo="ContainerLOV" criteriaFrom="ContainerLOV" requiredForLOV="true"/>
+                                    <lovMap id="getContDesc" lovItem="ContainerDesc" resultTo="ContainerDesc"/>
+                                    <lovMap id="getMaxWeight" lovItem="MaxWeight" resultTo="ContainerWeight"/>
+                                    <lovMap id="getWeightUOM" lovItem="UomWeight" resultTo="ContWeightUOM"/>
+                                    <lovMap id="getMaxVolume" lovItem="MaxVolume" resultTo="ContainerVolume"/>
+                                    <lovMap id="getVolUOM" lovItem="UomVolume" resultTo="ContVolumeUOM"/>
+                                    <lovMap id="getMaxLinear" lovItem="MaxLinear" resultTo="ContainerLinear"/>
+                                    <lovMap id="getLinearUOM" lovItem="UomLinear" resultTo="ContLinearUOM"/>
+                                    <lovMap id="getMaxQty" lovItem="MaxQty" resultTo="ContainerQty"/>
+                                    <lovMap id="getQtyUOM" lovItem="UomQty" resultTo="ContQtyUOM"/>
+                                    <lovMap id="getMaxArea" lovItem="MaxArea" resultTo="ContainerArea"/>
+                                    <lovMap id="getAreaUOM" lovItem="UomArea" resultTo="ContAreaUOM"/>
+                                 </lovMappings>
+                              </oa:messageLovInput>
+                              <oa:messageTextInput id="ContainerDesc" prompt="" readOnly="false" disabled="true"/>
+                              <oa:messageTextInput id="ContainerWeight" readOnly="false" disabled="false" prompt="Max Weight" columns="10">
+                                 <ui:primaryClientAction>
+                                    <ui:firePartialAction event="ContainerWeightChg" id="firePartialAction3"/>
+                                 </ui:primaryClientAction>
+                              </oa:messageTextInput>
+                              <oa:messageTextInput id="ContWeightUOM" readOnly="false" disabled="true" columns="10"/>
+                              <oa:messageTextInput id="ContainerVolume" readOnly="false" disabled="false" prompt="Max Volume" columns="10"/>
+                              <oa:messageTextInput id="ContVolumeUOM" readOnly="false" disabled="true" columns="10"/>
+                              <oa:messageTextInput id="ContainerArea" prompt="Max Area" columns="10"/>
+                              <oa:messageTextInput id="ContAreaUOM" disabled="true" columns="10"/>
+                              <oa:messageTextInput id="ContainerLinear" readOnly="false" disabled="false" prompt="Max Length" columns="10"/>
+                              <oa:messageTextInput id="ContLinearUOM" readOnly="false" disabled="true" columns="10"/>
+                              <oa:messageTextInput id="ContainerQty" readOnly="false" disabled="false" prompt="Max Units" columns="10"/>
+                              <oa:messageTextInput id="ContQtyUOM" readOnly="false" disabled="true" columns="10"/>
+                           </ui:contents>
+                        </oa:messageComponentLayout>
+                        <oa:header id="ContWorkRN" text="Containerization" rendered="true"/>
+                        <oa:messageComponentLayout id="ContWrkInfoRN" rows="1" columns="3" width="60%">
+                           <ui:contents>
+                              <oa:messageTextInput id="NumContainers" dataType="NUMBER" prompt="Num of Containers" columns="10">
+                                 <ui:primaryClientAction>
+                                    <ui:firePartialAction event="NumContainersChg" id="firePartialAction4"/>
+                                 </ui:primaryClientAction>
+                              </oa:messageTextInput>
+                              <oa:messageTextInput id="ReqDate" dataType="DATE" viewName="ParmValuesVO1" viewAttr="ReqDate" prompt="Order Date">
+                                 <ui:primaryClientAction>
+                                    <ui:firePartialAction event="chgReqDate"/>
+                                 </ui:primaryClientAction>
+                              </oa:messageTextInput>
+                              <oa:messageTextInput id="OrderDate" dataType="DATE" prompt="Need By Date" viewName="ParmValuesVO1" viewAttr="OrderDate"/>
+                              <oa:messageTextInput id="DockDate" dataType="DATE" prompt="Dock Date" viewName="ParmValuesVO1" viewAttr="DockDate" rendered="false"/>
+                           </ui:contents>
+                        </oa:messageComponentLayout>
+                        <oa:messageComponentLayout id="ContWrk1" rows="1" columns="5" width="100%">
+                           <ui:contents>
+                              <oa:messageTextInput id="maxWeight" prompt="Max Weight" rendered="true" viewName="ParmValuesVO1" viewAttr="MaxWeight" dataType="NUMBER" readOnly="false" disabled="true" columns="15"/>
+                              <oa:messageTextInput id="maxVol" prompt="Max Volume" viewName="ParmValuesVO1" viewAttr="MaxVol" dataType="NUMBER" readOnly="false" disabled="true" columns="15"/>
+                              <oa:messageTextInput id="maxArea" disabled="true" prompt="Max Area" viewName="ParmValuesVO1" viewAttr="MaxArea" dataType="NUMBER" columns="15"/>
+                              <oa:messageTextInput id="maxLinear" prompt="Max Linear" dataType="NUMBER" viewName="ParmValuesVO1" viewAttr="MaxLinear" readOnly="false" disabled="true" columns="15"/>
+                              <oa:messageTextInput id="maxUnits" prompt="Max Units" viewName="ParmValuesVO1" viewAttr="MaxUnits" dataType="NUMBER" readOnly="false" disabled="true" columns="15"/>
+                           </ui:contents>
+                        </oa:messageComponentLayout>
+                        <oa:messageComponentLayout id="ContWrk2" rows="1" columns="5" width="100%">
+                           <ui:contents>
+                              <oa:messageTextInput id="curWeight" prompt="Current Weight" viewName="ParmValuesVO1" viewAttr="CurWeight" readOnly="false" disabled="true" columns="15"/>
+                              <oa:messageTextInput id="curVol" prompt="Current Volume" viewName="ParmValuesVO1" viewAttr="CurVol" readOnly="false" disabled="true" columns="15"/>
+                              <oa:messageTextInput id="curArea" queryable="false" readOnly="false" prompt="Current Area" viewName="ParmValuesVO1" viewAttr="CurArea" disabled="true" columns="15"/>
+                              <oa:messageTextInput id="curLinear" prompt="Current Linear" viewName="ParmValuesVO1" viewAttr="CurLinear" readOnly="false" disabled="true" columns="15"/>
+                              <oa:messageTextInput id="curUnits" prompt="Current Units" viewName="ParmValuesVO1" viewAttr="CurUnits" readOnly="false" disabled="true" columns="15"/>
+                           </ui:contents>
+                        </oa:messageComponentLayout>
+                        <oa:messageComponentLayout id="ContWrk3" rows="1" columns="5" width="100%">
+                           <ui:contents>
+                              <oa:messageTextInput id="opnWeight" prompt="Open Weight" viewName="ParmValuesVO1" viewAttr="OpnWeight" readOnly="false" disabled="true" columns="15"/>
+                              <oa:messageTextInput id="opnVol" prompt="Open Volume" viewName="ParmValuesVO1" viewAttr="OpnVol" readOnly="false" disabled="true" columns="15"/>
+                              <oa:messageTextInput id="opnArea" disabled="true" viewName="ParmValuesVO1" viewAttr="OpnArea" prompt="Open Area" columns="15"/>
+                              <oa:messageTextInput id="opnLinear" prompt="Open Linear" viewName="ParmValuesVO1" viewAttr="OpnLinear" readOnly="false" disabled="true" columns="15"/>
+                              <oa:messageTextInput id="opnUnits" prompt="Open Units" viewName="ParmValuesVO1" viewAttr="OpnUnits" readOnly="false" disabled="true" columns="15"/>
+                           </ui:contents>
+                        </oa:messageComponentLayout>
+                        <oa:messageComponentLayout id="ContWrk5" rows="1" columns="5" width="100%">
+                           <ui:contents>
+                              <oa:messageTextInput id="cntWeight" disabled="true" viewName="ParmValuesVO1" viewAttr="CurContWeight" prompt="Containers Weight" columns="15"/>
+                              <oa:messageTextInput id="cntVolume" disabled="true" viewName="ParmValuesVO1" viewAttr="CurContVolume" prompt="Containers Volume" columns="15"/>
+                              <oa:messageTextInput id="curContArea" disabled="true" viewName="ParmValuesVO1" viewAttr="CurContArea" prompt="Containers Area" columns="15"/>
+                              <oa:messageTextInput id="cntLinear" disabled="true" viewName="ParmValuesVO1" viewAttr="CurContLinear" prompt="Containers Linear" columns="15"/>
+                              <oa:messageTextInput id="cntQty" disabled="true" viewName="ParmValuesVO1" viewAttr="CurContQty" prompt="Containers Units" columns="15"/>
+                           </ui:contents>
+                        </oa:messageComponentLayout>
+                        <oa:messageComponentLayout id="ContWrk4" rows="1" columns="3" width="10%">
+                           <ui:contents>
+                              <oa:messageTextInput id="adjFactor" dataType="NUMBER" prompt="Adjustment Factor" viewName="ParmValuesVO1" viewAttr="AdjFactor" columns="10"/>
+                              <oa:messageLayout id="AdjButtonLayout">
+                                 <ui:contents>
+                                    <oa:button id="AdjData" text="Adjust" prompt="Adjust">
+                                       <ui:primaryClientAction>
+                                          <ui:firePartialAction event="AdjDataButton" id="firePartialAction6"/>
+                                       </ui:primaryClientAction>
+                                    </oa:button>
+                                 </ui:contents>
+                              </oa:messageLayout>
+                              <oa:messageTextInput id="adjFactorAdd" dataType="NUMBER" prompt="Adjust Additional Days" viewName="ParmValuesVO1" viewAttr="AdjFactorAdd" columns="10"/>
+                              <oa:messageLayout id="AdjAddDayLayout">
+                                 <ui:contents>
+                                    <oa:button id="AdjAddData" text="Adjust" prompt="Adjust">
+                                       <ui:primaryClientAction>
+                                          <ui:firePartialAction event="AdjAddDataClick"/>
+                                       </ui:primaryClientAction>
+                                    </oa:button>
+                                 </ui:contents>
+                              </oa:messageLayout>
+                              <oa:messageTextInput id="OneDayFactor" dataType="NUMBER" prompt="Add One Day Demand" viewName="ParmValuesVO1" viewAttr="OneDayDemand" rendered="false"/>
+                              <oa:messageLayout id="OneDButtonLayout" rendered="false">
+                                 <ui:contents>
+                                    <oa:button id="OneDay" text="Add" prompt="Add" rendered="false">
+                                       <ui:primaryClientAction>
+                                          <ui:firePartialAction event="OneDayButton" id="firePartialAction7"/>
+                                       </ui:primaryClientAction>
+                                    </oa:button>
+                                 </ui:contents>
+                              </oa:messageLayout>
+                           </ui:contents>
+                        </oa:messageComponentLayout>
+                        <oa:pageButtonBar id="buttonRN">
+                           <ui:contents>
+                              <oa:button id="Process" text="Firm" prompt="Firm">
+                                 <ui:primaryClientAction>
+                                    <ui:firePartialAction event="ProcessButton" id="firePartialAction5"/>
+                                 </ui:primaryClientAction>
+                              </oa:button>
+                           </ui:contents>
+                        </oa:pageButtonBar>
+                        <oa:messageCheckBox id="SelectAll" defaultValue="Y" checkedValue="Y" unCheckedValue="N" checked="true" text="Select All" prompt="Select All">
+                           <ui:primaryClientAction>
+                              <ui:firePartialAction event="SelectAllChg" id="firePartialAction8"/>
+                           </ui:primaryClientAction>
+                        </oa:messageCheckBox>
+                        <oa:contentContainer id="contMtxRN" width="100%">
+                           <ui:contents>
+                              <oa:rawText id="DivStart"/>
+                              <oa:advancedTable id="PlanOrdersRN" viewName="WkbQryVO1" width="100%" blockSize="500">
+                                 <ui:contents>
+                                    <oa:column id="SelectedCol">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="SelectedHDR" prompt="Sel"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageCheckBox id="Selected" checkedValue="Y" unCheckedValue="N" viewAttr="Selected">
+                                             <ui:primaryClientAction>
+                                                <ui:firePartialAction event="ItemSelChg" id="firePartialAction9"/>
+                                             </ui:primaryClientAction>
+                                          </oa:messageCheckBox>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="ItemNumberCol">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="ItemNumberHDR" prompt="Item Number"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="ItemNumber" viewAttr="ItemNumber"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="ItemDescriptionCol" width="200" cellNoWrapFormat="true">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="ItemDescriptionHDR" prompt="Item Description" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="ItemDescription" viewAttr="ItemDescription"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="ItemQtyCol" totalValue="true" columnDataFormat="numberFormat" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="ItemQtyHDR" prompt="Planned Qty"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageTextInput id="ItemQty" viewAttr="SumQty" columns="10">
+                                             <ui:primaryClientAction>
+                                                <ui:firePartialAction event="ItemQtyChg" id="firePartialAction10"/>
+                                             </ui:primaryClientAction>
+                                          </oa:messageTextInput>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="AddDaysQtyCol" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="AddDaysQtyHDR" prompt="Additional Days"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageTextInput id="AddDaysQty" viewAttr="SumAddQty" columns="10">
+                                             <ui:primaryClientAction>
+                                                <ui:firePartialAction event="AddDaysQtyChg"/>
+                                             </ui:primaryClientAction>
+                                          </oa:messageTextInput>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="SafetyStockCol">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="SafetyStockHDR" prompt="Safety Stock"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="SafetyStock" viewAttr="SafetyStock"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="InvOnHandCol">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="InvOnHandHDR" prompt="Inv On Hand"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="InvOnHand" viewAttr="InvOnHand"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="SingleDayCol" columnDataFormat="numberFormat" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="SingleDayHDR" prompt="Weekly Avg Demand"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="SingleDay" viewAttr="WeeklyAvg"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="OrderWeeksCol" cellNoWrapFormat="false" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="OrderWeeksHDR" cellNoWrapFormat="false" prompt="Ordered Weeks"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="OrderWeeks" viewAttr="OrderWeeks"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="ItemSkidQtyCol" columnDataFormat="numberFormat" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="ItemSkidQtyHDR" prompt="Qty per Skid"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="ItemSkidQty" viewAttr="ItemSkidQty"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="SkidQtyCol" totalValue="true" columnDataFormat="numberFormat" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="SkidQtyHDR" prompt="Num of Skids"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="SkidQty" viewAttr="SumSkids" dataType="NUMBER"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="TotalQtyCol" totalValue="true" columnDataFormat="numberFormat" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="TotalQtyHDR" prompt="Total Qty"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="TotalQty" viewAttr="TotalQty"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="OrgCodeCol">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="OrgCodeHDR" prompt="Org"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="OrgCode" viewAttr="OrganizationCode"/>
+                                       </ui:contents>
+                                    </oa:column>
+									<oa:column id="PgmCodeCol" width="200" cellNoWrapFormat="false">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="PgmCodeHDR" prompt="Pgm Code __________________" cellNoWrapFormat="false"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="PgmCode" viewAttr="ProgramCode"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="SupplierNameCol" width="130" cellNoWrapFormat="false">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="SupplierNameHDR" prompt="Primary Supplier _______________" cellNoWrapFormat="false"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="SupplierName" viewAttr="SupplierName" prompt="Primary Vendor"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck1Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol1}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck1HDR" prompt="Qty Bucket 1" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck1" viewAttr="QtyBkt1" dataType="VARCHAR2"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck2Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol2}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck2HDR" prompt="Qty Bucket 2" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck2" viewAttr="QtyBkt2"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck3Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol3}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck3HDR" prompt="Qty Bucket 3" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck3" viewAttr="QtyBkt3"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck4Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol4}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck4HDR" prompt="Qty Bucket 4" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck4" viewAttr="QtyBkt4"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck5Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol5}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck5HDR" prompt="Qty Bucket 5" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck5" viewAttr="QtyBkt5"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck6Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol6}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck6HDR" prompt="Qty Bucket 6" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck6" viewAttr="QtyBkt6"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck7Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol7}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck7HDR" prompt="Qty Bucket 7" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck7" viewAttr="QtyBkt7"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck8Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol8}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck8HDR" prompt="Qty Bucket 8" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck8" viewAttr="QtyBkt8"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck9Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol9}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck9HDR" prompt="Qty Bucket 9" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck9" viewAttr="QtyBkt9"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck10Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol10}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck10HDR" prompt="Qty Bucket 10" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck10" viewAttr="QtyBkt10"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck11Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol11}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck11HDR" prompt="Qty Bucket 11" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck11" viewAttr="QtyBkt11"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck12Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol12}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck12HDR" prompt="Qty Bucket 12" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck12" viewAttr="QtyBkt12"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck13Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol13}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck13HDR" prompt="Qty Bucket 13" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck13" viewAttr="QtyBkt13"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck14Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol14}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck14HDR" prompt="Qty Bucket 14" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck14" viewAttr="QtyBkt14"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck15Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol15}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck15HDR" prompt="Qty Bucket 15" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck15" viewAttr="QtyBkt15"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck16Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol16}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck16HDR" prompt="Qty Bucket 16" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck16" viewAttr="QtyBkt16"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck17Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol17}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck17HDR" prompt="Qty Bucket 17" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck17" viewAttr="QtyBkt17"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck18Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol18}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck18HDR" prompt="Qty Bucket 18" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck18" viewAttr="QtyBkt18"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck19Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol19}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck19HDR" prompt="Qty Bucket 19" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck19" viewAttr="QtyBkt19"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck20Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol20}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck20HDR" prompt="Qty Bucket 20" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck20" viewAttr="QtyBkt20"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck21Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol21}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck21HDR" prompt="Qty Bucket 21" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck21" viewAttr="QtyBkt21"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck22Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol22}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck22HDR" prompt="Qty Bucket 22" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck22" viewAttr="QtyBkt22"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck23Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol23}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck23HDR" prompt="Qty Bucket 23" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck23" viewAttr="QtyBkt23"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck24Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol24}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck24HDR" prompt="Qty Bucket 24" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck24" viewAttr="QtyBkt24"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck25Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol25}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck25HDR" prompt="Qty Bucket 25" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck25" viewAttr="QtyBkt25"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                    <oa:column id="QtyBuck26Col" totalValue="true" rendered="${oa.EnableColHdrVO1.EnableCol26}" columnDataFormat="numberFormat" cellNoWrapFormat="true" width="75">
+                                       <ui:columnHeader>
+                                          <oa:sortableHeader id="QtyBuck26HDR" prompt="Qty Bucket 26" cellNoWrapFormat="true"/>
+                                       </ui:columnHeader>
+                                       <ui:contents>
+                                          <oa:messageStyledText id="QtyBuck26" viewAttr="QtyBkt26"/>
+                                       </ui:contents>
+                                    </oa:column>
+                                 </ui:contents>
+                                 <ui:footer>
+                                    <oa:tableFooter id="tableFooter1">
+                                       <ui:total>
+                                          <oa:totalRow id="totalRow1" readOnly="true"/>
+                                       </ui:total>
+                                    </oa:tableFooter>
+                                 </ui:footer>
+                                 <ui:tableActions>
+                                    <oa:flowLayout id="region1">
+                                       <ui:contents>
+                                          <oa:exportButton id="Export" exportAllRows="true" viewName="WkbQryVO1" text="Export Data"/>
+                                       </ui:contents>
+                                    </oa:flowLayout>
+                                 </ui:tableActions>
+                              </oa:advancedTable>
+                              <oa:rawText id="DivEnd"/>
+                           </ui:contents>
+                        </oa:contentContainer>
+                     </ui:contents>
+                  </oa:header>
+                  <oa:header id="relTabTRN">
+                     <ui:contents>
+                        <oa:advancedTable id="ReqHdrRN" viewName="ReqHdrVO1" detailViewAttr="DetailFlg" viewLinkName="ReqHdrLinesVL1" childViewAttrName="ReqNumber" width="100%">
+                           <ui:contents>
+                              <oa:column id="ReqNumberCol" cellNoWrapFormat="true">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="ReqNumberHDR" prompt="Req Number"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="ReqNumber" viewAttr="ReqNumber"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="OrgNameCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="OrgNameHDR" prompt="Ship To Org"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="OrgName" viewAttr="OrganizationCode"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="ShipToLocCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="ShipToLocHDR" prompt="ShipTo Location"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="ShipToLoc" viewAttr="ShipToLocation"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="PortDateCol" cellNoWrapFormat="true">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="PortDateHDR" prompt="Port Date"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="PortDate" viewAttr="PortDate"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="NeedByDateCol" cellNoWrapFormat="true">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="NeedByDateHDR" prompt="Need By Date"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="NeedByDate" viewAttr="NeedByDate"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="VendorNameCol" cellNoWrapFormat="true">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="VendorNameHDR" prompt="Vendor Name"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="VendorName" viewAttr="PartnerName"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="NumLinesCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="NumLinesHDR" prompt="Num Lines"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="NumLines" viewAttr="NumLines"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="TotalWeightCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="TotalWeightHDR" prompt="Total Weight"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="TotalWeight" viewAttr="TotalWeight"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="WeightUOMCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="WeightUOMHDR" prompt="UOM"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="WeightUOM" viewAttr="WeightUom"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="TotalVolCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="TotalVolHDR" prompt="Total Vol"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="TotalVol" viewAttr="TotalVolume"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="VolUOMCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="VolUOMHDR" prompt="UOM"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="VolUOM" viewAttr="VolumeUom"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="TotalAreaCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="TotalAreaHDR" prompt="Total Area"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="TotalArea" viewAttr="TotalArea"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="AreaUOMCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="AreaUOMHDR" prompt="UOM"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="AreaUOM" viewAttr="AreaUom"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="TotalLenCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="TotalLenHDR" prompt="Total Len"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="TotalLen" viewAttr="TotalLinear"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="LenUOMCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="LenUOMHDR" prompt="UOM"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="LenUOM" viewAttr="LinearUom"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="TotalUnitsCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="TotalUnitsHDR" prompt="Total Qty"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="TotalUnits" viewAttr="TotalUnits"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="TotalCostCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="TotalCostHDR" prompt="Total Standard Cost"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="TotalCost" viewAttr="TotalCstDsp"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="delRowCol" columnDataFormat="iconButtonFormat">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="delRowHDR" prompt="Cancel"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:image id="delRow" source="deleteicon_enabled.gif">
+                                       <ui:primaryClientAction>
+                                          <ui:fireAction event="delRowClk" id="fireAction1">
+                                             <ui:parameters>
+                                                <ui:parameter key="tblReqNumber" value="${oa.ReqHdrVO1.ReqNumber}"/>
+                                             </ui:parameters>
+                                          </ui:fireAction>
+                                       </ui:primaryClientAction>
+                                    </oa:image>
+                                 </ui:contents>
+                              </oa:column>
+                           </ui:contents>
+                           <ui:detail>
+                              <oa:header id="ReqDtlRN" viewLinkName="ReqLinesVL1">
+                                 <ui:contents>
+                                    <oa:advancedTable id="ReqLinesRN" viewName="ReqLinesVO1" viewLinkName="ReqHdrLinesVL1">
+                                       <ui:contents>
+                                          <oa:column id="ItemNameCol">
+                                             <ui:columnHeader>
+                                                <oa:sortableHeader id="ItemNameHDR" prompt="Item"/>
+                                             </ui:columnHeader>
+                                             <ui:contents>
+                                                <oa:messageStyledText id="ItemName" viewAttr="ItemName"/>
+                                             </ui:contents>
+                                          </oa:column>
+                                          <oa:column id="ItemDescCol">
+                                             <ui:columnHeader>
+                                                <oa:sortableHeader id="ItemDescHDR" prompt="Description"/>
+                                             </ui:columnHeader>
+                                             <ui:contents>
+                                                <oa:messageStyledText id="ItemDesc" viewAttr="Description"/>
+                                             </ui:contents>
+                                          </oa:column>
+                                          <oa:column id="OrderQtyCol">
+                                             <ui:columnHeader>
+                                                <oa:sortableHeader id="OrderQtyHDR" prompt="Order Quantity"/>
+                                             </ui:columnHeader>
+                                             <ui:contents>
+                                                <oa:messageStyledText id="OrderQty" viewAttr="OrderQuantity"/>
+                                             </ui:contents>
+                                          </oa:column>
+                                          <oa:column id="OrderUOMCol">
+                                             <ui:columnHeader>
+                                                <oa:sortableHeader id="OrderUOMHDR" prompt="UOM"/>
+                                             </ui:columnHeader>
+                                             <ui:contents>
+                                                <oa:messageStyledText id="OrderUOM" viewAttr="UomCode"/>
+                                             </ui:contents>
+                                          </oa:column>
+                                          <oa:column id="ItemCostCol">
+                                             <ui:columnHeader>
+                                                <oa:sortableHeader id="ItemCostHDR" prompt="Item Cost"/>
+                                             </ui:columnHeader>
+                                             <ui:contents>
+                                                <oa:messageStyledText id="ItemCost" viewAttr="ItemCstDsp"/>
+                                             </ui:contents>
+                                          </oa:column>
+                                          <oa:column id="LineCostCol">
+                                             <ui:columnHeader>
+                                                <oa:sortableHeader id="LineCostHDR" prompt="Line Cost"/>
+                                             </ui:columnHeader>
+                                             <ui:contents>
+                                                <oa:messageStyledText id="LineCost" viewAttr="LineCstDsp"/>
+                                             </ui:contents>
+                                          </oa:column>
+                                       </ui:contents>
+                                    </oa:advancedTable>
+                                 </ui:contents>
+                              </oa:header>
+                           </ui:detail>
+                        </oa:advancedTable>
+                        <oa:pageButtonBar id="tabButtonsRN">
+                           <ui:contents>
+                              <oa:button id="clearAllBtn" text="Clear ALL" prompt="Clear ALL" popupId="popUpConfRN" popupEnabled="true"/>
+                              <oa:button id="releaseBtn" text="Release" prompt="Release" popupId="relAllConfirmRN" popupEnabled="true"/>
+                              <oa:popUp id="popUpConfRN" popupRegion="/mbci/oracle/apps/xxmb/rice183/webui/popUpConfirmRN" popupTitle="Delete All Requisitions" width="400" height="200" shortDesc="Additional Text?"/>
+                              <oa:popUp id="relAllConfirmRN" popupRegion="/mbci/oracle/apps/xxmb/rice183/webui/popUpReleaseRN" popupTitle="Release ALL Requisitions"/>
+                           </ui:contents>
+                        </oa:pageButtonBar>
+                     </ui:contents>
+                  </oa:header>
+               </ui:contents>
+               <ui:subTabs>
+                  <oa:subTabBar id="subTabBar1">
+                     <ui:contents>
+                        <oa:link id="containTabLNK" destination="&quot;OA.jsp?page=/mbci/oracle/apps/xxmb/rice183/webui/XXMBRice183PG&amp;retainAM=Y&amp;addBreadCrumb=Y&amp;&quot; + OASubTabLayoutBean.OA_SELECTED_SUBTAB_IDX + &quot;=&quot; + 0" text="Plan Containerization">
+                           <ui:primaryClientAction>
+                              <ui:firePartialAction event="containTabClk"/>
+                           </ui:primaryClientAction>
+                        </oa:link>
+                        <oa:link id="relTabLNK" destination="&quot;OA.jsp?page=/mbci/oracle/apps/xxmb/rice183/webui/XXMBRice183PG&amp;retainAM=Y&amp;addBreadCrumb=Y&amp;&quot; + OASubTabLayoutBean.OA_SELECTED_SUBTAB_IDX + &quot;=&quot; + 1" text="Release Orders">
+                           <ui:primaryClientAction>
+                              <ui:firePartialAction event="relTabClk"/>
+                           </ui:primaryClientAction>
+                        </oa:link>
+                     </ui:contents>
+                  </oa:subTabBar>
+               </ui:subTabs>
+            </oa:subTabLayout>
+            <oa:formValue id="ParentQryID" dataType="NUMBER" viewName="ParmValuesVO1" viewAttr="wkbQryID"/>
+            <oa:formValue id="ParentOrgID" dataType="NUMBER"/>
+            <oa:formValue id="ParentPlnrCode"/>
+            <oa:formValue id="ParentSupplierID" dataType="NUMBER"/>
+            <oa:formValue id="confirmAction"/>
+         </ui:contents>
+      </oa:pageLayout>
+   </content>
+</page>

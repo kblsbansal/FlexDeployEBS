@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="10.1.3_1312" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="MainRN" windowTitle="Search Account Mapping" title="Search Account Mapping" amDefName="mbci.oracle.apps.xxmb.gl.importjournal.server.ImportJournalAM" controllerClass="mbci.oracle.apps.xxmb.gl.importjournal.webui.SearchAccMappingsCO">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:query id="SearchRN" mode="autoCustomizationCriteria" dispSimple="true" dispCustomized="true" dispAdvanced="false">
+               <ui:contents>
+                  <oa:table id="AcctMappingTable" width="100%" text="Account Mappings" blockSize="15">
+                     <ui:contents>
+                        <oa:messageStyledText id="RecordType" dataType="VARCHAR2" prompt="Record Type" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="RecordType" maximumLength="10" queryable="true"/>
+                        <oa:messageStyledText id="Description" dataType="VARCHAR2" prompt="Description" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Description" maximumLength="250"/>
+                        <oa:messageStyledText id="TypeCol" dataType="VARCHAR2" prompt="Type" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="ProcessType" maximumLength="100" queryable="false"/>
+                        <oa:messageStyledText id="Code1" dataType="VARCHAR2" prompt="Code1" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Code1" maximumLength="20" queryable="true"/>
+                        <oa:messageStyledText id="Code2" dataType="VARCHAR2" prompt="Code2" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Code2" maximumLength="20"/>
+                        <oa:messageStyledText id="Code3" dataType="VARCHAR2" prompt="Code3" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Code3" maximumLength="20"/>
+                        <oa:messageStyledText id="AccruedYn" dataType="VARCHAR2" prompt="Accrued(Y/N)" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="AccruedYn" maximumLength="2" queryable="false"/>
+                        <oa:messageStyledText id="Account1" dataType="VARCHAR2" prompt="Account1" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Account1" maximumLength="10" queryable="true"/>
+                        <oa:messageStyledText id="Account2" dataType="VARCHAR2" prompt="Account2" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Account2" maximumLength="10" queryable="true"/>
+                        <oa:messageStyledText id="LegalEntity" dataType="VARCHAR2" prompt="Legal Entity" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="LegalEntity" maximumLength="10" rendered="false"/>
+                        <oa:messageStyledText id="Location" dataType="VARCHAR2" prompt="Location" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Location" maximumLength="10" rendered="false"/>
+                        <oa:messageStyledText id="Department" dataType="VARCHAR2" prompt="Department" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Department" maximumLength="10" rendered="false"/>
+                        <oa:messageStyledText id="Channel" dataType="VARCHAR2" prompt="Channel" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Channel" maximumLength="10" rendered="false"/>
+                        <oa:messageStyledText id="Brand" dataType="VARCHAR2" prompt="Brand" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Brand" maximumLength="10" rendered="false"/>
+                        <oa:messageStyledText id="Intercompany" dataType="VARCHAR2" prompt="Intercompany" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Intercompany" maximumLength="10" rendered="false"/>
+                        <oa:messageStyledText id="Future1" dataType="VARCHAR2" prompt="Future1" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Future1" maximumLength="10" rendered="false"/>
+                        <oa:image id="DeleteRec" prompt="Delete" source="deleteicon_enabled.gif">
+                           <ui:primaryClientAction>
+                              <ui:fireAction event="deleteRec">
+                                 <ui:parameters>
+                                    <ui:parameter key="ParamRecordId" value="${oa.XxmbPsToGlAcctMappingVO1.RecordId}"/>
+                                    <ui:parameter key="ParamDesc" value="${oa.XxmbPsToGlAcctMappingVO1.Description}"/>
+                                    <ui:parameter key="ParamCode1" value="${oa.XxmbPsToGlAcctMappingVO1.Code1}"/>
+                                    <ui:parameter key="ParamAccount1" value="${oa.XxmbPsToGlAcctMappingVO1.Account1}"/>
+                                    <ui:parameter key="ParamAccount2" value="${oa.XxmbPsToGlAcctMappingVO1.Account2}"/>
+                                 </ui:parameters>
+                              </ui:fireAction>
+                           </ui:primaryClientAction>
+                        </oa:image>
+                        <oa:image id="UpdateRec" source="updateicon_enabled.gif" prompt="Update">
+                           <ui:primaryClientAction>
+                              <ui:fireAction event="updateRec"/>
+                           </ui:primaryClientAction>
+                        </oa:image>
+                     </ui:contents>
+                     <ui:tableActions>
+                        <oa:flowLayout id="region1">
+                           <ui:contents>
+                              <oa:submitButton id="AddNewRow" text="Add New Row" prompt="Add New Row"/>
+                           </ui:contents>
+                        </oa:flowLayout>
+                     </ui:tableActions>
+                  </oa:table>
+               </ui:contents>
+               <oa:simpleSearchMappings>
+                  <oa:queryCriteriaMap id="RecordTypeCriteriaMap" criteriaItem="SrchRecordType" resultsItem="RecordType"/>
+                  <oa:queryCriteriaMap id="AccruedYnCriteriaMap" criteriaItem="SrchAccruedYn" resultsItem="AccruedYn"/>
+                  <oa:queryCriteriaMap id="TypeCriteriaMap" criteriaItem="SrchType" resultsItem="TypeCol"/>
+                  <oa:queryCriteriaMap id="Code1CriteriaMap" criteriaItem="SrchCode" resultsItem="Code1"/>
+                  <oa:queryCriteriaMap id="Account1CriteriaMap" criteriaItem="SrchAccount1" resultsItem="Account1"/>
+                  <oa:queryCriteriaMap id="Account2CriteriaMap" criteriaItem="SrcgAccount2" resultsItem="Account2"/>
+               </oa:simpleSearchMappings>
+               <oa:simpleSearchPanel>
+                  <oa:header text="Simple Search" id="SrchPanelRN">
+                     <ui:contents>
+                        <oa:messageComponentLayout id="SrchPanelMCL" rows="2" columns="3">
+                           <ui:contents>
+                              <oa:messageChoice id="SrchRecordType" prompt="Record Type" pickListViewName="RecordTypeLovVO1" pickListDispAttr="RecordType" pickListValAttr="RecordType"/>
+                              <oa:messageChoice id="SrchAccruedYn" prompt="Accrued(Y/N)" pickListViewName="YesNoLovVO1" pickListDispAttr="YN" pickListValAttr="YN" defaultValue="" allowBlankValue="true"/>
+                              <oa:messageChoice id="SrchType" pickListViewName="SearchTypeLovVO1" pickListDispAttr="SearchType" pickListValAttr="SearchType" prompt="Search Type" allowBlankValue="true"/>
+                              <oa:messageLovInput id="SrchCode" externalListOfValues="/mbci/oracle/apps/xxmb/gl/importjournal/lov/webui/ValidCode1RN" prompt="Code 1">
+                                 <lovMappings>
+                                    <lovMap id="lovMap1" resultTo="SrchCode" criteriaFrom="SrchCode" lovItem="ValidCode"/>
+                                 </lovMappings>
+                              </oa:messageLovInput>
+                              <oa:messageLovInput id="SrchAccount1" externalListOfValues="/mbci/oracle/apps/xxmb/gl/importjournal/lov/webui/ValidAccount1RN" prompt="Account 1">
+                                 <lovMappings>
+                                    <lovMap id="lovMap2" criteriaFrom="SrchAccount1" resultTo="SrchAccount1" lovItem="ValidAccountOne"/>
+                                 </lovMappings>
+                              </oa:messageLovInput>
+                              <oa:messageLovInput id="SrcgAccount2" externalListOfValues="/mbci/oracle/apps/xxmb/gl/importjournal/lov/webui/ValidAccount2RN" prompt="Account 2">
+                                 <lovMappings>
+                                    <lovMap id="lovMap3" lovItem="ValidAccountTwo" resultTo="SrcgAccount2" criteriaFrom="SrcgAccount2"/>
+                                 </lovMappings>
+                              </oa:messageLovInput>
+                           </ui:contents>
+                        </oa:messageComponentLayout>
+                     </ui:contents>
+                  </oa:header>
+               </oa:simpleSearchPanel>
+            </oa:query>
+         </ui:contents>
+      </oa:pageLayout>
+   </content>
+</page>

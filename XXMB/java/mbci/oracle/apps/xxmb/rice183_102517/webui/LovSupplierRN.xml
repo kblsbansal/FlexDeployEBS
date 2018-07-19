@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!--*[Enter Javadoc like developer documentation, delete this line once you fill the included template.] [Put a one line description of the region here.] [Put a brief description of the usage of the region here.] @param [Parameter_name] [Put parameter use here.] @param [Parameter_name] [Put parameter use here.] @see [Put any additional links apart from controller class and BC4J objects directly referenced by this region]-->
+<oa:listOfValues version="10.1.3_1312" xml:lang="en-US" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:ui="http://xmlns.oracle.com/uix/ui" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$" scope="/">
+   <ui:contents>
+      <oa:table name="LovSupplierRN" id="LovSupplierVO1">
+         <ui:contents>
+            <oa:messageStyledText id="QueryID" viewName="LovSupplierVO1" viewAttr="WkbqryId" dataType="NUMBER" selectiveSearchCriteria="true"/>
+            <oa:messageStyledText id="OrganizationId" dataType="NUMBER" prompt="OrganizationId" viewName="LovSupplierVO1" viewAttr="OrganizationId" selectiveSearchCriteria="true"/>
+            <oa:messageStyledText id="PlannerCode" dataType="VARCHAR2" prompt="PlannerCode" viewName="LovSupplierVO1" viewAttr="PlannerCode" maximumLength="10" selectiveSearchCriteria="true"/>
+            <oa:messageStyledText id="SupplierId" dataType="NUMBER" prompt="SupplierId" viewName="LovSupplierVO1" viewAttr="SupplierId"/>
+            <oa:messageStyledText id="SupplierName" dataType="VARCHAR2" prompt="SupplierName" viewName="LovSupplierVO1" viewAttr="SupplierName" maximumLength="255" queryable="true"/>
+         </ui:contents>
+      </oa:table>
+   </ui:contents>
+</oa:listOfValues>

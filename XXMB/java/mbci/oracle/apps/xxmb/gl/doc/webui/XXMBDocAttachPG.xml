@@ -1,0 +1,128 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="10.1.3_1312" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="MainPG" amDefName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBDocAttachAM" controllerClass="mbci.oracle.apps.xxmb.gl.doc.webui.XXMBDocAttachCO" windowTitle="Box Upload Files" title="Box Attachments">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:messageComponentLayout id="msgCompLayoutRN" rendered="true">
+               <ui:contents>
+                  <oa:messageFileUpload id="msgFileUpload" required="no"/>
+                  <oa:messageLayout id="messageLayout1">
+                     <ui:contents>
+                        <oa:button id="submitButton" use="/oracle/apps/fnd/attributesets/Buttons/Go" text="Attach" prompt="Attach">
+                           <ui:primaryClientAction>
+                              <ui:fireAction formSubmitted="true" event="create"/>
+                           </ui:primaryClientAction>
+                        </oa:button>
+                        <oa:button id="clear" use="/oracle/apps/fnd/attributesets/Buttons/ClearAll" text="Clear" prompt="Clear">
+                           <ui:primaryClientAction>
+                              <ui:fireAction formSubmitted="true" event="clear"/>
+                           </ui:primaryClientAction>
+                        </oa:button>
+                     </ui:contents>
+                  </oa:messageLayout>
+               </ui:contents>
+            </oa:messageComponentLayout>
+            <oa:spacer id="spacer" height="20"/>
+            <oa:messageStyledText id="jrName" cellNoWrapFormat="true" vAlign="middle" totalValue="true" styleClass="OraDataText" prompt="Journal Name :"/>
+            <oa:advancedTable id="tableLayoutRN" viewName="XXMBBoxAttachmentsVO1" text="" width="70%">
+               <ui:contents>
+                  <oa:column id="column1561" width="20%">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="sortableHeader161" prompt="Attachment Num"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="sno" viewAttr="AttachmentNum" dataType="NUMBER"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="column156" width="20%">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="sortableHeader16" prompt="File Name"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:link id="fileName" viewAttr="FileName" destination="https://fbhs.app.box.com/file/{@BoxFileId}" targetFrame="_blank"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="column155" rendered="true">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="sortableHeader15" prompt="Created By"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="createdBy" viewAttr="Attribute1" columns="40"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="column153" columnDataFormat="textFormat" rendered="true">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="sortableHeader13" prompt="Creation Date" cellNoWrapFormat="false"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="creationDate" viewAttr="CreationDate" popupEnabled="false" serverUnvalidated="false" destination=""/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="column1522" columnDataFormat="iconButtonFormat">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="sortableHeader122" prompt="Delete"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:image id="deleteDisabled1" prompt="Delete" source="deleteicon_disabled.gif" rendered="true"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="column152" columnDataFormat="iconButtonFormat">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="sortableHeader12" prompt="Delete"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:switcher id="switcherDelRn" viewAttr="DeleteAllowed">
+                           <ui:case name="deleteEnabled">
+                              <oa:image id="deleteEnabled" prompt="Delete" source="deleteicon_enabled.gif" rendered="true">
+                                 <ui:primaryClientAction>
+                                    <ui:fireAction event="delete" id="fireAction1"/>
+                                 </ui:primaryClientAction>
+                              </oa:image>
+                           </ui:case>
+                           <ui:case name="deleteDisabled">
+                              <oa:image id="deleteDisabled" prompt="Delete" source="deleteicon_disabled.gif" rendered="true"/>
+                           </ui:case>
+                        </oa:switcher>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="column1521" columnDataFormat="iconButtonFormat">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="sortableHeader121" prompt="Status"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:switcher id="switcherRn" viewAttr="ProcessFlag">
+                           <ui:case name="Y">
+                              <oa:image id="Y" source="okind_active.gif" shortDesc="Success"/>
+                           </ui:case>
+                           <ui:case name="E">
+                              <oa:image id="E" source="erroricon_status.gif" shortDesc="Failed"/>
+                           </ui:case>
+                           <ui:case name="N">
+                              <oa:image id="N" source="processingicon_pagetitle.gif" shortDesc="In Process"/>
+                           </ui:case>
+                        </oa:switcher>
+                     </ui:contents>
+                  </oa:column>
+               </ui:contents>
+               <ui:tableActions>
+                  <oa:flowLayout id="tableActionsRN" rendered="false"/>
+               </ui:tableActions>
+               <ui:footer>
+                  <oa:tableFooter id="tableFooter1">
+                     <ui:contents>
+                        <oa:button id="Refresh" text="Refresh" prompt="Refresh">
+                           <ui:primaryClientAction>
+                              <ui:firePartialAction event="refresh" id="firePartialAction1"/>
+                           </ui:primaryClientAction>
+                        </oa:button>
+                     </ui:contents>
+                  </oa:tableFooter>
+               </ui:footer>
+            </oa:advancedTable>
+         </ui:contents>
+      </oa:pageLayout>
+   </content>
+</page>

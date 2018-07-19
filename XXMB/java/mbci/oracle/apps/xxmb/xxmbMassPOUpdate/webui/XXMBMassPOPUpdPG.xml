@@ -1,0 +1,172 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="10.1.3_1312" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="pageLayoutRN" amDefName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.xxmbMassPOUpdAM" windowTitle="MBCI PO Mass Update" title="MBCI PO Mass Update" controllerClass="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.webui.XXMBMassPOUpdCO">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:header id="srcHeaderRN" text="Search"/>
+            <oa:messageComponentLayout id="searchRN" rendered="true">
+               <ui:contents>
+                  <oa:messageLovInput id="src_po_number" queryable="true" externalListOfValues="/mbci/oracle/apps/xxmb/xxmbMassPOUpdate/webui/poNumLovRN" selectiveSearchCriteria="true" viewName="poSearchVO1" viewAttr="po_number" prompt="Purchase Order">
+                     <lovMappings>
+                        <lovMap id="getPONumber" lovItem="PoNumber" resultTo="src_po_number" criteriaFrom="src_po_number"/>
+                     </lovMappings>
+                  </oa:messageLovInput>
+                  <oa:messageLovInput id="src_vendor_name" prompt="Vendor" externalListOfValues="/mbci/oracle/apps/xxmb/xxmbMassPOUpdate/webui/vendorLovRN" queryable="true" selectiveSearchCriteria="true" viewName="poSearchVO1" viewAttr="vendor_name">
+                     <lovMappings>
+                        <lovMap id="getVendorName" lovItem="VendorName" resultTo="src_vendor_name" criteriaFrom="src_vendor_name"/>
+                     </lovMappings>
+                  </oa:messageLovInput>
+                  <oa:messageLovInput id="src_shipto_loc" queryable="true" selectiveSearchCriteria="true" externalListOfValues="/mbci/oracle/apps/xxmb/xxmbMassPOUpdate/webui/shiptoLocLovRN" prompt="Ship To Location" viewName="poSearchVO1" viewAttr="ship_to_loc">
+                     <lovMappings>
+                        <lovMap id="getLocationCode" lovItem="LocationCode" resultTo="src_shipto_loc" criteriaFrom="src_shipto_loc"/>
+                     </lovMappings>
+                  </oa:messageLovInput>
+                  <oa:messageTextInput id="src_po_date_frm" dataType="DATE" viewName="poSearchVO1" viewAttr="po_date_from" prompt="PO Creation Date From"/>
+                  <oa:messageTextInput id="src_po_date_to" dataType="DATE" viewName="poSearchVO1" viewAttr="po_date_to" prompt="PO Creation Date To"/>
+                  <oa:messageLayout id="searchLayout">
+                     <ui:contents>
+                        <oa:button id="searchButton" text="Search" prompt="Search">
+                           <ui:primaryClientAction>
+                              <ui:firePartialAction event="searchButton"/>
+                           </ui:primaryClientAction>
+                        </oa:button>
+                     </ui:contents>
+                  </oa:messageLayout>
+               </ui:contents>
+            </oa:messageComponentLayout>
+            <oa:header id="selHeaderRN" text="Select"/>
+            <oa:rowLayout id="poUpdValRN" hAlign="left" vAlign="middle" width="100%" rendered="true">
+               <ui:contents>
+                  <oa:messageCheckBox id="selAll" checkedValue="Y" unCheckedValue="N" viewName="poUpdateValVO1" viewAttr="selAll">
+                     <ui:primaryClientAction>
+                        <ui:firePartialAction event="selAllChg" id="firePartialAction1"/>
+                     </ui:primaryClientAction>
+                  </oa:messageCheckBox>
+                  <oa:messageLovInput id="newShipToLoc" queryable="true" externalListOfValues="/mbci/oracle/apps/xxmb/xxmbMassPOUpdate/webui/shiptoLocLovRN" selectiveSearchCriteria="true" viewName="poUpdateValVO1" viewAttr="newShipToLoc" prompt="New Ship To Location">
+                     <lovMappings>
+                        <lovMap id="getNewShipTo" lovItem="LocationCode" resultTo="newShipToLoc" criteriaFrom="newShipToLoc"/>
+                     </lovMappings>
+                  </oa:messageLovInput>
+                  <oa:messageTextInput id="newNeedByDate" dataType="DATE" viewName="poUpdateValVO1" viewAttr="newNeedByDate" prompt="New Need By Date">
+                     <ui:primaryClientAction>
+                        <ui:firePartialAction event="gblNeedByChg" id="firePartialAction2"/>
+                     </ui:primaryClientAction>
+                  </oa:messageTextInput>
+                  <oa:messageTextInput id="newPromDate" dataType="DATE" viewName="poUpdateValVO1" viewAttr="newPromisedDate" prompt="New Promised Date">
+                     <ui:primaryClientAction>
+                        <ui:firePartialAction event="gblPromDtChg" id="firePartialAction3"/>
+                     </ui:primaryClientAction>
+                  </oa:messageTextInput>
+                  <oa:button id="updateBtn" text="Update Selected" prompt="Update Selected">
+                     <ui:primaryClientAction>
+                        <ui:firePartialAction event="updateBtn" id="firePartialAction4"/>
+                     </ui:primaryClientAction>
+                  </oa:button>
+                  <oa:button id="closeBtn" text="Close Selected" prompt="Close Selected">
+                     <ui:primaryClientAction>
+                        <ui:firePartialAction event="closeBtn" id="firePartialAction5"/>
+                     </ui:primaryClientAction>
+                  </oa:button>
+                  <oa:popUp id="popUpYesNoRN" popupRegion="/mbci/oracle/apps/xxmb/xxmbMassPOUpdate/webui/confYesNoRN"/>
+               </ui:contents>
+            </oa:rowLayout>
+            <oa:header id="poResultsRN" rendered="true"/>
+            <oa:advancedTable id="poSearchResultsRN" viewName="xxmbMassPOUpdVO1" width="100%" text="">
+               <ui:contents>
+                  <oa:column id="selCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="selHDR" prompt="Sel"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageCheckBox id="selFlag" defaultValue="" checkedValue="Y" unCheckedValue="N" checked="false" viewAttr="Selected">
+                           <ui:primaryClientAction>
+                              <ui:firePartialAction event="selFlagChg"/>
+                           </ui:primaryClientAction>
+                        </oa:messageCheckBox>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="poNumberCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="poNumberHDR" prompt="PO Number"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="poNumber" viewAttr="PoNumber" prompt="PO Number"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="poDateCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="poDateHDR" prompt="PO Date"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="poDate" viewAttr="PoDate" dataType="DATE"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="vendorNameCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="vendorNameHDR" prompt="Vendor Name"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="vendorName" viewAttr="VendorName"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="shpToLocCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="shpToLocHDR" prompt="ShipTo Location"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageLovInput id="shpToLoc" queryable="true" selectiveSearchCriteria="true" externalListOfValues="/mbci/oracle/apps/xxmb/xxmbMassPOUpdate/webui/shiptoLocLovRN" viewAttr="NewShipToLocation">
+                           <lovMappings>
+                              <lovMap id="getShpToLocCol" lovItem="LocationCode" resultTo="shpToLoc" criteriaFrom="shpToLoc"/>
+                           </lovMappings>
+                        </oa:messageLovInput>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="totPOQtyCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="totPOQtyHDR" prompt="Total Qty"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="totPOQty" viewAttr="PoTotalQty"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="opnPOQtyCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="opnPOQtyHDR" prompt="Open Qty"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="opnPOQty" viewAttr="PoTotalQtyOpen"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="poNeedByDateCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="poNeedByDateHDR" prompt="Need By Date"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageTextInput id="poNeedByDate" dataType="DATE" viewAttr="NewNeedByDate">
+                           <ui:primaryClientAction>
+                              <ui:firePartialAction event="newNeedByChg"/>
+                           </ui:primaryClientAction>
+                        </oa:messageTextInput>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="poPromDateCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="poPromDateHDR" prompt="Promise Date"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageTextInput id="poPromDate" dataType="DATE" viewAttr="NewPromisedDate">
+                           <ui:primaryClientAction>
+                              <ui:firePartialAction event="newPromChg"/>
+                           </ui:primaryClientAction>
+                        </oa:messageTextInput>
+                     </ui:contents>
+                  </oa:column>
+               </ui:contents>
+            </oa:advancedTable>
+         </ui:contents>
+      </oa:pageLayout>
+   </content>
+</page>

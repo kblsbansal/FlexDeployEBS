@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="10.1.3_1312" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="pageLayoutRN" amDefName="mbci.oracle.apps.xxmb.req.d7i.server.XXMBReqD7IStsAM" controllerClass="mbci.oracle.apps.xxmb.req.d7i.webui.XXMBReqStsMNCO" windowTitle="D7I Req Status Page" title="D7I Req Status Form">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:query id="queryRN" mode="none" dispSimple="false">
+               <ui:contents>
+                  <oa:table id="XXMBReqStsVO1">
+                     <ui:contents>
+                        <oa:messageStyledText id="CreationDate" dataType="DATE" prompt="From Date" viewName="XXMBReqStsVO1" viewAttr="CreationDate"/>
+                        <oa:messageStyledText id="CreationDate1" dataType="DATE" prompt="To Date" viewName="XXMBReqStsVO1" viewAttr="ToDate" rendered="false"/>
+                        <oa:messageStyledText id="D7iReqNumber" dataType="VARCHAR2" prompt="D7i Req Number" viewName="XXMBReqStsVO1" viewAttr="D7iReqNumber" maximumLength="20"/>
+                        <oa:messageStyledText id="RequistionProcessStatus" dataType="VARCHAR2" prompt="Req Status" viewName="XXMBReqStsVO1" viewAttr="RequistionProcessStatus" maximumLength="1"/>
+                        <oa:messageStyledText id="OracleReqNumber" dataType="VARCHAR2" prompt="Oracle Req Number" viewName="XXMBReqStsVO1" viewAttr="OracleReqNumber" maximumLength="25"/>
+                        <oa:messageStyledText id="PoNumber" dataType="VARCHAR2" prompt="PO Number" viewName="XXMBReqStsVO1" viewAttr="PoNumber" maximumLength="20"/>
+                        <oa:messageStyledText id="ObPoNum" dataType="VARCHAR2" prompt="O/B PO Number" viewName="XXMBReqStsVO1" viewAttr="ObPoNum" maximumLength="30"/>
+                        <oa:messageStyledText id="ObPoStatus" dataType="VARCHAR2" prompt="O/B PO Status" viewName="XXMBReqStsVO1" viewAttr="ObPoStatus" maximumLength="30"/>
+                     </ui:contents>
+                     <ui:tableSelection>
+                        <oa:singleSelection id="singleSelection1" viewName="XXMBReqStsVO1" viewAttr="singleSelect">
+                           <ui:primaryClientAction>
+                              <ui:firePartialAction event="select"/>
+                           </ui:primaryClientAction>
+                        </oa:singleSelection>
+                     </ui:tableSelection>
+                  </oa:table>
+               </ui:contents>
+               <oa:simpleSearchPanel>
+                  <oa:header text="Simple Search" id="simpleSearchHdr">
+                     <ui:contents>
+                        <oa:messageComponentLayout id="simpleSearchMsgComRN">
+                           <ui:contents>
+                              <oa:messageTextInput id="frmDate" dataType="DATE" prompt="From Date"/>
+                              <oa:messageTextInput id="toDate" dataType="DATE" prompt="To Date"/>
+                              <oa:messageLovInput id="d7iReqNum" lookAheadEnabled="true" externalListOfValues="/mbci/oracle/apps/xxmb/req/d7i/lov/webui/XXMBD7IReqNumRN" prompt="D7I Req Number">
+                                 <lovMappings>
+                                    <lovMap id="lovMap1" lovItem="D7iReqNum" resultTo="d7iReqNum" criteriaFrom="d7iReqNum"/>
+                                 </lovMappings>
+                              </oa:messageLovInput>
+                              <oa:messageLovInput id="poNumber" externalListOfValues="/mbci/oracle/apps/xxmb/req/d7i/lov/webui/XXMBPONumberRN" queryable="true" lookAheadEnabled="true" prompt="PO Number">
+                                 <lovMappings>
+                                    <lovMap id="lovMap2" lovItem="PoNumber" resultTo="poNumber" criteriaFrom="poNumber"/>
+                                    <lovMap id="lovMap3" lovItem="d7iReqNumberLov" resultTo="d7iReqNum" criteriaFrom="d7iReqNum"/>
+                                 </lovMappings>
+                              </oa:messageLovInput>
+                              <oa:messageLayout id="messageLayout1">
+                                 <ui:contents>
+                                    <oa:spacer id="spacer" height="5"/>
+                                    <oa:submitButton id="Go" text="Go" prompt="Go">
+                                       <ui:primaryClientAction>
+                                          <ui:firePartialAction event="go"/>
+                                       </ui:primaryClientAction>
+                                    </oa:submitButton>
+                                    <oa:button id="Clear" text="Clear" prompt="Clear">
+                                       <ui:primaryClientAction>
+                                          <ui:fireAction event="clear"/>
+                                       </ui:primaryClientAction>
+                                    </oa:button>
+                                 </ui:contents>
+                              </oa:messageLayout>
+                           </ui:contents>
+                        </oa:messageComponentLayout>
+                     </ui:contents>
+                  </oa:header>
+               </oa:simpleSearchPanel>
+               <oa:simpleSearchMappings>
+                  <oa:queryCriteriaMap id="queryCriteriaMap1" criteriaItem="frmDate" resultsItem="CreationDate"/>
+                  <oa:queryCriteriaMap id="queryCriteriaMap2" criteriaItem="toDate" resultsItem="CreationDate"/>
+                  <oa:queryCriteriaMap id="queryCriteriaMap3" criteriaItem="d7iReqNum" resultsItem="D7iReqNumber"/>
+               </oa:simpleSearchMappings>
+            </oa:query>
+            <oa:spacer id="spacer2" height="10"/>
+            <oa:table id="XXMBReqErrorVO1" text="">
+               <ui:contents>
+                  <oa:messageStyledText id="D7iReqNumber1" dataType="VARCHAR2" prompt="D7I Req Number" viewName="XXMBReqErrorVO1" viewAttr="D7iReqNumber" maximumLength="20"/>
+                  <oa:messageStyledText id="ValidationError" dataType="VARCHAR2" prompt="Validation Error" viewName="XXMBReqErrorVO1" viewAttr="ValidationError" maximumLength="4000"/>
+                  <oa:messageStyledText id="InterfaceError" dataType="VARCHAR2" prompt="Interface Error" viewName="XXMBReqErrorVO1" viewAttr="InterfaceError" maximumLength="2000"/>
+               </ui:contents>
+            </oa:table>
+         </ui:contents>
+      </oa:pageLayout>
+   </content>
+</page>

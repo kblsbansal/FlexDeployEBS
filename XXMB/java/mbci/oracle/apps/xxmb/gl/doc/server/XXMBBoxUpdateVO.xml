@@ -1,0 +1,283 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+
+<ViewObject
+   Name="XXMBBoxUpdateVO"
+   SelectList="XXMBBoxAttachmentsEO.ATTACHMENT_ID, 
+       XXMBBoxAttachmentsEO.PK1_VALUE, 
+       XXMBBoxAttachmentsEO.PK2_VALUE, 
+       XXMBBoxAttachmentsEO.PK3_VALUE, 
+       XXMBBoxAttachmentsEO.PK4_VALUE, 
+       XXMBBoxAttachmentsEO.PK5_VALUE, 
+       XXMBBoxAttachmentsEO.FILE_NAME, 
+       XXMBBoxAttachmentsEO.FILE_DESCRIPTION, 
+       XXMBBoxAttachmentsEO.ATTACHMENT_LINK, 
+       XXMBBoxAttachmentsEO.ATTRIBUTE_CATEGORY, 
+       XXMBBoxAttachmentsEO.ATTRIBUTE1, 
+       XXMBBoxAttachmentsEO.ATTRIBUTE2, 
+       XXMBBoxAttachmentsEO.ATTRIBUTE3, 
+       XXMBBoxAttachmentsEO.ATTRIBUTE4, 
+       XXMBBoxAttachmentsEO.ATTRIBUTE5, 
+       XXMBBoxAttachmentsEO.ATTRIBUTE6, 
+       XXMBBoxAttachmentsEO.ATTRIBUTE7, 
+       XXMBBoxAttachmentsEO.ATTRIBUTE8, 
+       XXMBBoxAttachmentsEO.ATTRIBUTE9, 
+       XXMBBoxAttachmentsEO.ATTRIBUTE10, 
+       XXMBBoxAttachmentsEO.ERROR_DETAILS, 
+       XXMBBoxAttachmentsEO.LAST_UPDATE_DATE, 
+       XXMBBoxAttachmentsEO.LAST_UPDATED_BY, 
+       XXMBBoxAttachmentsEO.LAST_UPDATE_LOGIN, 
+       XXMBBoxAttachmentsEO.CREATION_DATE, 
+       XXMBBoxAttachmentsEO.CREATED_BY, 
+       XXMBBoxAttachmentsEO.ATTACHMENT_NUM, 
+       XXMBBoxAttachmentsEO.BOX_FILE_ID, 
+       XXMBBoxAttachmentsEO.BOX_FILE_NAME, 
+       XXMBBoxAttachmentsEO.CATEGORY_NAME, 
+       XXMBBoxAttachmentsEO.PROCESS_FLAG, 
+       XXMBBoxAttachmentsEO.ENTITY_NAME, 
+       XXMBBoxAttachmentsEO.FUNCTION_NAME, 
+       XXMBBoxAttachmentsEO.APP_SHORT_NAME, 
+       XXMBBoxAttachmentsEO.BOX_FOLDER_ID, 
+       XXMBBoxAttachmentsEO.BOX_FOLDER_NAME, 
+       XXMBBoxAttachmentsEO.RESPONSIBILITY_ID"
+   FromList="XXMB.XXMB_BOX_ATTACHMENTS XXMBBoxAttachmentsEO"
+   BindingStyle="OracleName"
+   CustomQuery="false"
+   RowClass="mbci.oracle.apps.xxmb.gl.doc.server.XXMBBoxUpdateVORowImpl"
+   ComponentClass="mbci.oracle.apps.xxmb.gl.doc.server.XXMBBoxUpdateVOImpl"
+   UseGlueCode="false" >
+   <DesignTime>
+      <Attr Name="_isCodegen" Value="true" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+      <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess" />
+   </DesignTime>
+   <EntityUsage
+      Name="XXMBBoxAttachmentsEO"
+      Entity="mbci.oracle.apps.xxmb.gl.doc.server.XXMBBoxAttachmentsEO" >
+      <DesignTime>
+         <Attr Name="_queryClause" Value="false" />
+      </DesignTime>
+   </EntityUsage>
+   <ViewAttribute
+      Name="AttachmentId"
+      EntityAttrName="AttachmentId"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTACHMENT_ID" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Pk1Value"
+      EntityAttrName="Pk1Value"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="PK1_VALUE" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Pk2Value"
+      EntityAttrName="Pk2Value"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="PK2_VALUE" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Pk3Value"
+      EntityAttrName="Pk3Value"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="PK3_VALUE" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Pk4Value"
+      EntityAttrName="Pk4Value"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="PK4_VALUE" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Pk5Value"
+      EntityAttrName="Pk5Value"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="PK5_VALUE" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="FileName"
+      EntityAttrName="FileName"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="FILE_NAME" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="FileDescription"
+      EntityAttrName="FileDescription"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="FILE_DESCRIPTION" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="AttachmentLink"
+      EntityAttrName="AttachmentLink"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTACHMENT_LINK" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="AttributeCategory"
+      EntityAttrName="AttributeCategory"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTRIBUTE_CATEGORY" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Attribute1"
+      EntityAttrName="Attribute1"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTRIBUTE1" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Attribute2"
+      EntityAttrName="Attribute2"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTRIBUTE2" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Attribute3"
+      EntityAttrName="Attribute3"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTRIBUTE3" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Attribute4"
+      EntityAttrName="Attribute4"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTRIBUTE4" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Attribute5"
+      EntityAttrName="Attribute5"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTRIBUTE5" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Attribute6"
+      EntityAttrName="Attribute6"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTRIBUTE6" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Attribute7"
+      EntityAttrName="Attribute7"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTRIBUTE7" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Attribute8"
+      EntityAttrName="Attribute8"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTRIBUTE8" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Attribute9"
+      EntityAttrName="Attribute9"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTRIBUTE9" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Attribute10"
+      EntityAttrName="Attribute10"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTRIBUTE10" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="ErrorDetails"
+      EntityAttrName="ErrorDetails"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ERROR_DETAILS" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="LastUpdateDate"
+      EntityAttrName="LastUpdateDate"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="LAST_UPDATE_DATE" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="LastUpdatedBy"
+      EntityAttrName="LastUpdatedBy"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="LAST_UPDATED_BY" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="LastUpdateLogin"
+      EntityAttrName="LastUpdateLogin"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="LAST_UPDATE_LOGIN" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="CreationDate"
+      EntityAttrName="CreationDate"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="CREATION_DATE" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="CreatedBy"
+      EntityAttrName="CreatedBy"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="CREATED_BY" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="AttachmentNum"
+      EntityAttrName="AttachmentNum"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ATTACHMENT_NUM" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="BoxFileId"
+      EntityAttrName="BoxFileId"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="BOX_FILE_ID" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="BoxFileName"
+      EntityAttrName="BoxFileName"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="BOX_FILE_NAME" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="CategoryName"
+      EntityAttrName="CategoryName"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="CATEGORY_NAME" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="ProcessFlag"
+      EntityAttrName="ProcessFlag"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="PROCESS_FLAG" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="EntityName"
+      EntityAttrName="EntityName"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="ENTITY_NAME" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="FunctionName"
+      EntityAttrName="FunctionName"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="FUNCTION_NAME" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="AppShortName"
+      EntityAttrName="AppShortName"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="APP_SHORT_NAME" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="BoxFolderId"
+      EntityAttrName="BoxFolderId"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="BOX_FOLDER_ID" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="BoxFolderName"
+      EntityAttrName="BoxFolderName"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="BOX_FOLDER_NAME" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="ResponsibilityId"
+      EntityAttrName="ResponsibilityId"
+      EntityUsage="XXMBBoxAttachmentsEO"
+      AliasName="RESPONSIBILITY_ID" >
+   </ViewAttribute>
+</ViewObject>

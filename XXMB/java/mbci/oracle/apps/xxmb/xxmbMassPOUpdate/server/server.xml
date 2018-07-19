@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE JboPackage SYSTEM "jbo_03_01.dtd">
+
+<JboPackage
+   Name="server"
+   SeparateXMLFiles="true"
+   PackageName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server" >
+   <DesignTime>
+      <Attr Name="_ejbPackage" Value="false" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+   </DesignTime>
+   <Containee
+      Name="poNumLovVO"
+      FullName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.poNumLovVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="poSearchVO"
+      FullName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.poSearchVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="poUpdateValVO"
+      FullName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.poUpdateValVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="shiptoLocVO"
+      FullName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.shiptoLocVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="vendorLovVO"
+      FullName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.vendorLovVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="xxmbMassPOUpdAM"
+      FullName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.xxmbMassPOUpdAM"
+      ObjectType="AppModule" >
+   </Containee>
+   <Containee
+      Name="xxmbMassPOUpdVO"
+      FullName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.xxmbMassPOUpdVO"
+      ObjectType="ViewObject" >
+   </Containee>
+</JboPackage>

@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oa:listOfValues version="10.1.3_1312" xml:lang="en-US" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:ui="http://xmlns.oracle.com/uix/ui" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$" scope="/" amDefName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.xxmbMassPOUpdAM">
+   <ui:contents>
+      <oa:table name="poNumLovRN" id="poNumLovVO1">
+         <ui:contents>
+            <oa:formValue id="PoHeaderId" dataType="NUMBER" prompt="PoHeaderId" viewName="poNumLovVO1" viewAttr="PoHeaderId"/>
+            <oa:messageStyledText id="PoNumber" dataType="VARCHAR2" prompt="PoNumber" viewName="poNumLovVO1" viewAttr="PoNumber" maximumLength="20" queryable="true" selectiveSearchCriteria="true"/>
+         </ui:contents>
+      </oa:table>
+   </ui:contents>
+</oa:listOfValues>

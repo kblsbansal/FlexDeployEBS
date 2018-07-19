@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE JboPackage SYSTEM "jbo_03_01.dtd">
+
+<JboPackage
+   Name="server"
+   SeparateXMLFiles="true"
+   PackageName="mbci.oracle.apps.xxmb.gl.doc.server" >
+   <DesignTime>
+      <Attr Name="_ejbPackage" Value="false" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+   </DesignTime>
+   <Containee
+      Name="XXMBAttachmentNumVO"
+      FullName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBAttachmentNumVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="XXMBBoxAttachmentsEO"
+      FullName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBBoxAttachmentsEO"
+      ObjectType="Entity" >
+   </Containee>
+   <Containee
+      Name="XXMBBoxAttachmentsVO"
+      FullName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBBoxAttachmentsVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="XXMBBoxFilesDBTxnsVO"
+      FullName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBBoxFilesDBTxnsVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="XXMBBoxFolderIDVO"
+      FullName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBBoxFolderIDVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="XXMBDocAttachAM"
+      FullName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBDocAttachAM"
+      ObjectType="AppModule" >
+   </Containee>
+   <Containee
+      Name="XXMBJRNameVO"
+      FullName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBJRNameVO"
+      ObjectType="ViewObject" >
+   </Containee>
+</JboPackage>

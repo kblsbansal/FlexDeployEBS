@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+
+<ViewObject
+   Name="XXMBD7IReqNumVO"
+   BindingStyle="OracleName"
+   CustomQuery="true"
+   RowClass="mbci.oracle.apps.xxmb.req.d7i.lov.server.XXMBD7IReqNumVORowImpl"
+   ComponentClass="mbci.oracle.apps.xxmb.req.d7i.lov.server.XXMBD7IReqNumVOImpl"
+   UseGlueCode="false" >
+   <SQLQuery><![CDATA[
+SELECT requistnid d7i_req_num
+FROM xxmb_ops_d7i_req_int_stg
+GROUP BY requistnid
+ORDER BY requistnid DESC
+   ]]></SQLQuery>
+   <DesignTime>
+      <Attr Name="_isCodegen" Value="true" />
+      <Attr Name="_isExpertMode" Value="true" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+      <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess" />
+   </DesignTime>
+   <ViewAttribute
+      Name="D7iReqNum"
+      IsPersistent="false"
+      Precision="20"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="D7I_REQ_NUM"
+      Expression="D7I_REQ_NUM"
+      SQLType="VARCHAR" >
+      <DesignTime>
+         <Attr Name="_DisplaySize" Value="20" />
+      </DesignTime>
+   </ViewAttribute>
+</ViewObject>

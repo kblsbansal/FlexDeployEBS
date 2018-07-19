@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+
+<AppModule
+   Name="xxmbMassPOUpdAM"
+   ComponentClass="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.xxmbMassPOUpdAMImpl" >
+   <DesignTime>
+      <Attr Name="_isCodegen" Value="true" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+      <Attr Name="_deployType" Value="0" />
+   </DesignTime>
+   <ViewUsage
+      Name="poSearchVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.poSearchVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="vendorLovVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.vendorLovVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="shiptoLocVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.shiptoLocVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="poNumLovVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.poNumLovVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="xxmbMassPOUpdVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.xxmbMassPOUpdVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="poUpdateValVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.poUpdateValVO" >
+   </ViewUsage>
+</AppModule>

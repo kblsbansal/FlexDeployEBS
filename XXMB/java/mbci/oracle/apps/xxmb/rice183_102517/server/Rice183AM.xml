@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+
+<AppModule
+   Name="Rice183AM"
+   ComponentClass="mbci.oracle.apps.xxmb.rice183.server.Rice183AMImpl" >
+   <DesignTime>
+      <Attr Name="_isCodegen" Value="true" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+      <Attr Name="_deployType" Value="0" />
+   </DesignTime>
+   <ViewUsage
+      Name="LovOrgCodeVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.rice183.server.LovOrgCodeVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="LovSupplierVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.rice183.server.LovSupplierVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="LovContainerVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.rice183.server.LovContainerVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="WkbQryVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.rice183.server.WkbQryVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="ParmValuesVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.rice183.server.ParmValuesVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="EnableColHdrVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.rice183.server.EnableColHdrVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="LovPlanPgmVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.rice183.server.LovPlanPgmVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="ReqHdrVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.rice183.server.ReqHdrVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="ReqLinesVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.rice183.server.ReqLinesVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="ReqLinesVO2"
+      ViewObjectName="mbci.oracle.apps.xxmb.rice183.server.ReqLinesVO" >
+   </ViewUsage>
+   <ViewLinkUsage
+      Name="ReqHdrLinesVL1"
+      ViewLinkObjectName="mbci.oracle.apps.xxmb.rice183.server.ReqHdrLinesVL"
+      SrcViewUsageName="mbci.oracle.apps.xxmb.rice183.server.Rice183AM.ReqHdrVO1"
+      DstViewUsageName="mbci.oracle.apps.xxmb.rice183.server.Rice183AM.ReqLinesVO1" >
+      <DesignTime>
+         <Attr Name="_isCodegen" Value="true" />
+         <Attr Name="_version" Value="10.1.3.41.57" />
+      </DesignTime>
+   </ViewLinkUsage>
+</AppModule>

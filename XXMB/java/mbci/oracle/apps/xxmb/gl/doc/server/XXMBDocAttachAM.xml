@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+
+<AppModule
+   Name="XXMBDocAttachAM"
+   ComponentClass="mbci.oracle.apps.xxmb.gl.doc.server.XXMBDocAttachAMImpl" >
+   <DesignTime>
+      <Attr Name="_isCodegen" Value="true" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+      <Attr Name="_deployType" Value="0" />
+   </DesignTime>
+   <ViewUsage
+      Name="XXMBAttachmentNumVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBAttachmentNumVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="XXMBBoxFolderIDVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBBoxFolderIDVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="XXMBBoxFilesDBTxnsVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBBoxFilesDBTxnsVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="XXMBBoxAttachmentsVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBBoxAttachmentsVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="XXMBJRNameVO1"
+      ViewObjectName="mbci.oracle.apps.xxmb.gl.doc.server.XXMBJRNameVO" >
+   </ViewUsage>
+</AppModule>

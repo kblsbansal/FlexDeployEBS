@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+
+<ViewObject
+   Name="XXMBReqStsVO"
+   BindingStyle="OracleName"
+   CustomQuery="true"
+   RowClass="mbci.oracle.apps.xxmb.req.d7i.server.XXMBReqStsVORowImpl"
+   ComponentClass="mbci.oracle.apps.xxmb.req.d7i.server.XXMBReqStsVOImpl"
+   UseGlueCode="false" >
+   <SQLQuery><![CDATA[
+SELECT TRUNC (xodris.rowdate) creation_date, TRUNC (xodris.rowdate) to_date,
+         xodris.requistnid d7i_req_number,
+         xodris.status_flag requistion_process_status,
+         DECODE (xodris.status_flag, 'E', NULL, xodris.requisition_type)
+            oracle_req_number,
+         (  SELECT poh.segment1
+              FROM po_headers_all poh,
+                   po_distributions_all pda,
+                   po_req_distributions_all prda,
+                   po_requisition_headers_all prha,
+                   po_requisition_lines_all prla
+             WHERE     1 = 1
+                   AND poh.po_header_id = pda.po_header_id
+                   AND pda.req_distribution_id = prda.distribution_id
+                   AND prda.requisition_line_id = prla.requisition_line_id
+                   AND prla.requisition_header_id = prha.requisition_header_id
+                   AND prha.segment1 = xodris.requisition_type
+                   AND prha.attribute3 = xodris.requistnid
+          GROUP BY poh.segment1)
+            po_number,
+         (  SELECT xpdhos.document_num
+              FROM po_headers_all poh,
+                   po_distributions_all pda,
+                   po_req_distributions_all prda,
+                   po_requisition_headers_all prha,
+                   po_requisition_lines_all prla,
+                   XXMB_PO_D7I_HDR_OUTBOUND_STG xpdhos
+             WHERE     1 = 1
+                   AND poh.po_header_id = pda.po_header_id
+                   AND pda.req_distribution_id = prda.distribution_id
+                   AND prda.requisition_line_id = prla.requisition_line_id
+                   AND prla.requisition_header_id = prha.requisition_header_id
+                   AND prha.segment1 = xodris.requisition_type
+                   AND prha.attribute3 = xodris.requistnid
+                   AND 'O-' || poh.segment1 = xpdhos.document_num
+          GROUP BY xpdhos.document_num)
+            ob_po_num,
+         (  SELECT xpdhos.po_status
+              FROM po_headers_all poh,
+                   po_distributions_all pda,
+                   po_req_distributions_all prda,
+                   po_requisition_headers_all prha,
+                   po_requisition_lines_all prla,
+                   XXMB_PO_D7I_HDR_OUTBOUND_STG xpdhos
+             WHERE     1 = 1
+                   AND poh.po_header_id = pda.po_header_id
+                   AND pda.req_distribution_id = prda.distribution_id
+                   AND prda.requisition_line_id = prla.requisition_line_id
+                   AND prla.requisition_header_id = prha.requisition_header_id
+                   AND prha.segment1 = xodris.requisition_type
+                   AND prha.attribute3 = xodris.requistnid
+                   AND 'O-' || poh.segment1 = xpdhos.document_num
+          GROUP BY xpdhos.po_status)
+            ob_po_status
+    FROM xxmb_ops_d7i_req_int_stg xodris 
+   WHERE     1 = 1
+AND    TRUNC(xodris.rowdate) BETWEEN NVL( :1,TRUNC(xodris.rowdate)) AND NVL( :2,TRUNC(xodris.rowdate))
+AND xodris.requistnid = NVL(:3,xodris.requistnid)
+GROUP BY TRUNC (xodris.rowdate),
+         xodris.requisition_type,
+         xodris.status_flag,
+         xodris.requistnid
+ORDER BY TRUNC (xodris.rowdate) DESC
+   ]]></SQLQuery>
+   <DesignTime>
+      <Attr Name="_isCodegen" Value="true" />
+      <Attr Name="_isExpertMode" Value="true" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+      <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess" />
+   </DesignTime>
+   <ViewAttribute
+      Name="CreationDate"
+      IsPersistent="false"
+      Type="oracle.jbo.domain.Date"
+      ColumnType="DATE"
+      AliasName="CREATION_DATE"
+      Expression="CREATION_DATE"
+      SQLType="DATE" >
+      <DesignTime>
+         <Attr Name="_DisplaySize" Value="7" />
+      </DesignTime>
+   </ViewAttribute>
+   <ViewAttribute
+      Name="ToDate"
+      IsPersistent="false"
+      Type="oracle.jbo.domain.Date"
+      ColumnType="DATE"
+      AliasName="TO_DATE"
+      Expression="TO_DATE"
+      SQLType="DATE" >
+      <DesignTime>
+         <Attr Name="_DisplaySize" Value="7" />
+      </DesignTime>
+   </ViewAttribute>
+   <ViewAttribute
+      Name="D7iReqNumber"
+      IsPersistent="false"
+      Precision="20"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="D7I_REQ_NUMBER"
+      Expression="D7I_REQ_NUMBER"
+      SQLType="VARCHAR" >
+      <DesignTime>
+         <Attr Name="_DisplaySize" Value="20" />
+      </DesignTime>
+   </ViewAttribute>
+   <ViewAttribute
+      Name="RequistionProcessStatus"
+      IsPersistent="false"
+      Precision="1"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="REQUISTION_PROCESS_STATUS"
+      Expression="REQUISTION_PROCESS_STATUS"
+      SQLType="VARCHAR" >
+      <DesignTime>
+         <Attr Name="_DisplaySize" Value="1" />
+      </DesignTime>
+   </ViewAttribute>
+   <ViewAttribute
+      Name="OracleReqNumber"
+      IsPersistent="false"
+      Precision="25"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="ORACLE_REQ_NUMBER"
+      Expression="ORACLE_REQ_NUMBER"
+      SQLType="VARCHAR" >
+      <DesignTime>
+         <Attr Name="_DisplaySize" Value="25" />
+      </DesignTime>
+   </ViewAttribute>
+   <ViewAttribute
+      Name="PoNumber"
+      IsPersistent="false"
+      Precision="20"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="PO_NUMBER"
+      Expression="PO_NUMBER"
+      SQLType="VARCHAR" >
+      <DesignTime>
+         <Attr Name="_DisplaySize" Value="20" />
+      </DesignTime>
+   </ViewAttribute>
+   <ViewAttribute
+      Name="ObPoNum"
+      IsPersistent="false"
+      Precision="30"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="OB_PO_NUM"
+      Expression="OB_PO_NUM"
+      SQLType="VARCHAR" >
+      <DesignTime>
+         <Attr Name="_DisplaySize" Value="30" />
+      </DesignTime>
+   </ViewAttribute>
+   <ViewAttribute
+      Name="ObPoStatus"
+      IsPersistent="false"
+      Precision="30"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="OB_PO_STATUS"
+      Expression="OB_PO_STATUS"
+      SQLType="VARCHAR" >
+      <DesignTime>
+         <Attr Name="_DisplaySize" Value="30" />
+      </DesignTime>
+   </ViewAttribute>
+   <ViewAttribute
+      Name="singleSelect"
+      IsSelected="false"
+      IsPersistent="false"
+      Precision="255"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="VIEW_ATTR"
+      SQLType="VARCHAR" >
+   </ViewAttribute>
+</ViewObject>

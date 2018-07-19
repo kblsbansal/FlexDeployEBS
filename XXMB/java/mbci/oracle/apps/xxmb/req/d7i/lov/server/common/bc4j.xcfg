@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig>
+   <AppModuleConfigBag>
+      <AppModuleConfig name="XXMBReqLovAMLocal">
+         <AppModuleJndiName>mbci.oracle.apps.xxmb.req.d7i.lov.server.XXMBReqLovAM</AppModuleJndiName>
+         <DeployPlatform>LOCAL</DeployPlatform>
+         <JDBCName>DEV</JDBCName>
+         <ApplicationName>mbci.oracle.apps.xxmb.req.d7i.lov.server.XXMBReqLovAM</ApplicationName>
+         <jbo.project>MBCIPRG1</jbo.project>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <ConnectionDefinition name="DEV">
+      <ENTRY name="JDBC_PORT" value="1521"/>
+      <ENTRY name="ConnectionType" value="JDBC"/>
+      <ENTRY name="HOSTNAME" value="mbci-365-ddb09.itciss.com"/>
+      <ENTRY name="user" value="apps"/>
+      <ENTRY name="ConnectionName" value="DEV"/>
+      <ENTRY name="SID" value="ebsdev"/>
+      <ENTRY name="JdbcDriver" value="oracle.jdbc.OracleDriver"/>
+      <ENTRY name="password">
+         <![CDATA[{904}053DF33AD14DF68968705DF7B70A253066BB053C9A385BF4F5]]>
+      </ENTRY>
+      <ENTRY name="ORACLE_JDBC_TYPE" value="thin"/>
+      <ENTRY name="DeployPassword" value="true"/>
+   </ConnectionDefinition>
+</BC4JConfig>

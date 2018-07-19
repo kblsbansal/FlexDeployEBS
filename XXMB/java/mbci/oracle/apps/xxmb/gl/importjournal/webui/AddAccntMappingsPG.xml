@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="10.1.3_1312" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="MainRN" controllerClass="mbci.oracle.apps.xxmb.gl.importjournal.webui.AddAccntMappingsCO" amDefName="mbci.oracle.apps.xxmb.gl.importjournal.server.ImportJournalAM" windowTitle="Create Account Mapping" title="Create Account Mapping">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:header id="MainHdr" text="Account Mappings">
+               <ui:contents>
+                  <oa:messageComponentLayout id="AcctMappingRN" columns="2" rows="5">
+                     <ui:contents>
+                        <oa:messageStyledText id="RecordType" dataType="VARCHAR2" prompt="Record Type" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="RecordType" maximumLength="10" required="yes" styleClass="OraDataText"/>
+                        <oa:messageChoice id="RecordTypeLov" required="yes" rendered="false" pickListViewName="RecordTypeLovVO1" pickListDispAttr="RecordType" pickListValAttr="RecordType" prompt="Record Type" allowBlankValue="false"/>
+                        <oa:messageTextInput id="Description" dataType="VARCHAR2" prompt="Description" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Description" maximumLength="250"/>
+                        <oa:messageTextInput id="ProcessType" dataType="VARCHAR2" prompt="Type" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="ProcessType" maximumLength="100"/>
+                        <oa:messageTextInput id="Code1" dataType="VARCHAR2" prompt="Code1" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Code1" maximumLength="20" required="yes"/>
+                        <oa:messageTextInput id="Code2" dataType="VARCHAR2" prompt="Code2" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Code2" maximumLength="20"/>
+                        <oa:messageTextInput id="Code3" dataType="VARCHAR2" prompt="Code3" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Code3" maximumLength="20"/>
+                        <oa:messageChoice id="AccruedYn" dataType="VARCHAR2" prompt="Accrued(Y/N)" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="AccruedYn" required="yes" pickListViewName="YesNoLovVO1" pickListDispAttr="YN" pickListValAttr="YN"/>
+                        <oa:messageTextInput id="Account1" dataType="VARCHAR2" prompt="Account1" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Account1" maximumLength="10" required="yes"/>
+                        <oa:messageTextInput id="Account2" dataType="VARCHAR2" prompt="Account2" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Account2" maximumLength="10"/>
+                        <oa:messageTextInput id="LegalEntity" dataType="VARCHAR2" prompt="Legal Entity" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="LegalEntity" maximumLength="10" rendered="false"/>
+                        <oa:messageTextInput id="Location" dataType="VARCHAR2" prompt="Location" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Location" maximumLength="10" rendered="false"/>
+                        <oa:messageTextInput id="Department" dataType="VARCHAR2" prompt="Department" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Department" maximumLength="10" rendered="false"/>
+                        <oa:messageTextInput id="Channel" dataType="VARCHAR2" prompt="Channel" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Channel" maximumLength="10" rendered="false"/>
+                        <oa:messageTextInput id="Brand" dataType="VARCHAR2" prompt="Brand" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Brand" maximumLength="10" rendered="false"/>
+                        <oa:messageTextInput id="Intercompany" dataType="VARCHAR2" prompt="Intercompany" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Intercompany" maximumLength="10" rendered="false"/>
+                        <oa:messageTextInput id="Future1" dataType="VARCHAR2" prompt="Future1" viewName="XxmbPsToGlAcctMappingVO1" viewAttr="Future1" maximumLength="10" rendered="false"/>
+                     </ui:contents>
+                  </oa:messageComponentLayout>
+               </ui:contents>
+            </oa:header>
+            <oa:pageButtonBar id="pageButtonRN">
+               <ui:contents>
+                  <oa:submitButton id="Apply" text="Save" prompt="Save"/>
+                  <oa:submitButton id="Cancel" prompt="Cancel" serverUnvalidated="true" unvalidated="true"/>
+               </ui:contents>
+            </oa:pageButtonBar>
+         </ui:contents>
+      </oa:pageLayout>
+   </content>
+</page>

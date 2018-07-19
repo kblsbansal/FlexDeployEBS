@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oa:listOfValues version="10.1.3_1312" xml:lang="en-US" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:ui="http://xmlns.oracle.com/uix/ui" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$" scope="/" amDefName="mbci.oracle.apps.xxmb.xxmbMassPOUpdate.server.xxmbMassPOUpdAM">
+   <ui:contents>
+      <oa:table name="shiptoLocLovRN" id="shiptoLocVO1">
+         <ui:contents>
+            <oa:formValue id="LocationId" dataType="NUMBER" prompt="LocationId" viewName="shiptoLocVO1" viewAttr="LocationId"/>
+            <oa:messageStyledText id="LocationCode" dataType="VARCHAR2" prompt="LocationCode" viewName="shiptoLocVO1" viewAttr="LocationCode" maximumLength="60" queryable="true" selectiveSearchCriteria="true"/>
+            <oa:messageStyledText id="Description" dataType="VARCHAR2" prompt="Description" viewName="shiptoLocVO1" viewAttr="Description" maximumLength="240" queryable="true" selectiveSearchCriteria="true"/>
+         </ui:contents>
+      </oa:table>
+   </ui:contents>
+</oa:listOfValues>

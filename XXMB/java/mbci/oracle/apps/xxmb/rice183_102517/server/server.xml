@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE JboPackage SYSTEM "jbo_03_01.dtd">
+
+<JboPackage
+   Name="server"
+   SeparateXMLFiles="true"
+   PackageName="mbci.oracle.apps.xxmb.rice183.server" >
+   <DesignTime>
+      <Attr Name="_ejbPackage" Value="false" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+   </DesignTime>
+   <Containee
+      Name="EnableColHdrVO"
+      FullName="mbci.oracle.apps.xxmb.rice183.server.EnableColHdrVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="LovContainerVO"
+      FullName="mbci.oracle.apps.xxmb.rice183.server.LovContainerVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="LovOrgCodeVO"
+      FullName="mbci.oracle.apps.xxmb.rice183.server.LovOrgCodeVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="LovPlanPgmVO"
+      FullName="mbci.oracle.apps.xxmb.rice183.server.LovPlanPgmVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="LovSupplierVO"
+      FullName="mbci.oracle.apps.xxmb.rice183.server.LovSupplierVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="ParmValuesVO"
+      FullName="mbci.oracle.apps.xxmb.rice183.server.ParmValuesVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="ReqHdrLinesVL"
+      FullName="mbci.oracle.apps.xxmb.rice183.server.ReqHdrLinesVL"
+      ObjectType="ViewLink" >
+   </Containee>
+   <Containee
+      Name="ReqHdrVO"
+      FullName="mbci.oracle.apps.xxmb.rice183.server.ReqHdrVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="ReqLinesVO"
+      FullName="mbci.oracle.apps.xxmb.rice183.server.ReqLinesVO"
+      ObjectType="ViewObject" >
+   </Containee>
+   <Containee
+      Name="Rice183AM"
+      FullName="mbci.oracle.apps.xxmb.rice183.server.Rice183AM"
+      ObjectType="AppModule" >
+   </Containee>
+   <Containee
+      Name="WkbQryVO"
+      FullName="mbci.oracle.apps.xxmb.rice183.server.WkbQryVO"
+      ObjectType="ViewObject" >
+   </Containee>
+</JboPackage>
