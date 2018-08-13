@@ -1,0 +1,4 @@
+CREATE OR REPLACE PACKAGE WelcometoFlexDeploy AS 
+   PROCEDURE find_sal(c_id number); 
+END WelcometoFlexDeploy;
+/
